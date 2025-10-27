@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boxford Labs - Proprietary Tools & R&D</title>
+    <meta name="description" content="Where we build proprietary solutions when off-the-shelf doesn't work. Interview AI, review management systems, and custom operations tools.">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        :root {
+            --navy: #0B1E36;
+            --azure: #1C5AA1;
+            --emerald: #128061;
+            --ink: #1E293B;
+            --slate: #334155;
+            --muted: #64748B;
+            --soft: #F2F6FB;
+            --paper: #F7FAFC;
+            --line: #E6ECF3;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, Inter, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: var(--ink);
+            background: var(--paper);
+            line-height: 1.6;
+        }
+
+        .wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--line);
+            padding: 16px 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-main {
+            height: 70px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--slate);
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--azure);
+        }
+
+        .nav-cta {
+            background: var(--emerald) !important;
+            color: white !important;
+            border-radius: 8px;
+            padding: 10px 18px !important;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-cta:hover {
+            background: #1a7556 !important;
+            color: white !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(22,90,66,0.3);
+        }
+
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .menu-btn span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: var(--navy);
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .menu-btn { display: block; }
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 280px;
+                background: white;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 100px 40px;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+                transition: right 0.3s;
+            }
+            .nav-links.show { right: 0; }
+        }
+
+        /* Hero with Video */
+        .hero {
+            position: relative;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            color: white;
+            text-align: center;
+        }
+
+        .hero video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.35);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+
+        .labs-badge {
+            display: inline-block;
+            background: rgba(28,90,161,0.9);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 24px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 6vw, 64px);
+            font-weight: 900;
+            margin-bottom: 24px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: clamp(18px, 2vw, 22px);
+            line-height: 1.6;
+            opacity: 0.95;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        /* Section */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-alt {
+            background: var(--soft);
+        }
+
+        .section-title {
+            font-size: 40px;
+            font-weight: 800;
+            color: var(--navy);
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 20px;
+            color: var(--muted);
+            margin-bottom: 32px;
+        }
+
+        /* Philosophy/Why We Build */
+        .philosophy-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .philosophy-text {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--slate);
+            margin-bottom: 24px;
+        }
+
+        .philosophy-text strong {
+            color: var(--navy);
+            font-weight: 700;
+        }
+
+        /* Project Cards */
+        .project-featured {
+            background: white;
+            border-radius: 20px;
+            padding: 48px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            border: 2px solid var(--line);
+            margin-bottom: 48px;
+        }
+
+        .project-status {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--emerald), #10b981);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .project-featured h2 {
+            font-size: 36px;
+            font-weight: 900;
+            color: var(--navy);
+            margin-bottom: 12px;
+        }
+
+        .tagline {
+            font-size: 20px;
+            color: var(--muted);
+            margin-bottom: 32px;
+        }
+
+        .problem-solution {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .ps-box {
+            background: var(--soft);
+            padding: 28px;
+            border-radius: 12px;
+            border-left: 4px solid var(--azure);
+        }
+
+        .ps-box h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ps-icon {
+            display: inline-flex;
+            color: var(--azure);
+        }
+
+        .ps-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .ps-box li {
+            padding: 8px 0;
+            padding-left: 24px;
+            position: relative;
+            color: var(--slate);
+        }
+
+        .ps-box li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--azure);
+            font-weight: bold;
+        }
+
+        .approach-box {
+            background: #f0f9ff;
+            border-left: 4px solid var(--azure);
+            padding: 28px;
+            border-radius: 12px;
+            margin-bottom: 32px;
+        }
+
+        .approach-box h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 16px;
+        }
+
+        .approach-box p {
+            color: var(--slate);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .consent-example {
+            background: white;
+            border: 2px solid var(--line);
+            padding: 20px;
+            border-radius: 8px;
+            font-style: italic;
+            color: var(--slate);
+        }
+
+        .use-cases {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+
+        .use-case {
+            background: white;
+            border: 2px solid var(--line);
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.3s;
+        }
+
+        .use-case:hover {
+            border-color: var(--azure);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(28,90,161,0.15);
+        }
+
+        .use-case-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--soft);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            color: var(--azure);
+        }
+
+        .use-case h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .use-case p {
+            color: var(--slate);
+            font-size: 14px;
+        }
+
+        /* Tech Stack */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .tech-badge {
+            background: var(--soft);
+            color: var(--azure);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Other Projects */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .project-card {
+            background: white;
+            border: 2px solid var(--line);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            border-color: var(--azure);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(28,90,161,0.15);
+        }
+
+        .project-card-status {
+            display: inline-block;
+            background: rgba(18,128,97,0.1);
+            color: var(--emerald);
+            padding: 6px 14px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+
+        .project-card h3 {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--navy);
+            margin-bottom: 12px;
+        }
+
+        .project-card p {
+            color: var(--slate);
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--azure) 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            border-radius: 16px;
+            margin: 60px 0;
+        }
+
+        .cta-section h2 {
+            font-size: 40px;
+            margin-bottom: 16px;
+            font-weight: 900;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 32px;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            background: white;
+            color: var(--navy);
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        /* Footer */
+        .modern-footer {
+            background: linear-gradient(135deg, var(--navy) 0%, #0d2847 100%);
+            color: white;
+            padding: 60px 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        .footer-col h4 {
+            margin: 0 0 16px;
+            font-weight: 700;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-col h4 {
+                text-align: center;
+            }
+        }
+
+        .footer-col a {
+            color: rgba(255,255,255,0.7);
+            display: block;
+            margin: 8px 0;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.25s ease;
+        }
+
+        @media (max-width: 768px) {
+            .footer-col a {
+                text-align: center;
+            }
+        }
+
+        .footer-col a:hover {
+            color: white;
+        }
+
+        .footer-logo {
+            height: 60px;
+            width: auto;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .footer-logo {
+                margin: 0 auto 16px;
+            }
+        }
+
+        .footer-tagline {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.6;
+            max-width: 280px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-tagline {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+        }
+
+        .subscribe-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .subscribe-form {
+                align-items: center;
+            }
+        }
+
+        .subscribe-form input {
+            width: 100%;
+            max-width: 260px;
+            padding: 10px 14px;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            font-size: 14px;
+            background: #fff;
+        }
+
+        .subscribe-form button {
+            padding: 10px 20px;
+            background: var(--navy);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.25s ease;
+        }
+
+        .subscribe-form button:hover {
+            background: #0b1829;
+        }
+
+        .footer-bottom {
+            padding: 24px 0;
+        }
+
+        .bottom-wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: var(--muted);
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .bottom-wrap {
+                justify-content: center;
+                text-align: center;
+            }
+        }
+
+        .credit {
+            color: var(--muted);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="wrap">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <img src="Screen_Shot_2025-10-07_at_3.15.56_PM-removebg-preview.png" alt="Boxford Partners" class="logo-main">
+            </a>
+            
+            <button class="menu-btn" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <nav class="nav-links" id="mobileNav">
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="about.html">About</a>
+                <a href="faq.html">FAQ</a>
+                <a href="auditlanding.html" class="nav-cta">Start AI Readiness Audit</a>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<section class="hero">
+    <video autoplay muted loop playsinline>
+        <source src="161739-824152752_medium.mp4" type="video/mp4">
+    </video>
+    <div class="hero-content">
+        <span class="labs-badge">BOXFORD LABS</span>
+        <h1>We Build What Doesn't Exist</h1>
+        <p>When off-the-shelf solutions don't work, we build proprietary tools that give you an unfair advantage. This is where operations meet innovation.</p>
+    </div>
+</section>
+
+<section>
+    <div class="wrap">
+        <div class="philosophy-content">
+            <h2 class="section-title">Why We Build</h2>
+            <p class="section-subtitle">The best solutions come from seeing the same problem repeatedly and refusing to accept "that's just how it is."</p>
+            
+            <p class="philosophy-text">
+                <strong>Boxford Partners</strong> builds revenue operations systems for clients. <strong>Boxford Labs</strong> is where we prototype solutions to problems that don't have good answers yet.
+            </p>
+            
+            <p class="philosophy-text">
+                Some projects scale into products. Others inform how we serve clients. All of them push us to think differently about what's possible in business operations.
+            </p>
+
+            <p class="philosophy-text">
+                We're operators first, builders second. We only build what moves the needle.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Mid-Page CTA -->
+<section style="padding: 50px 0; background: linear-gradient(135deg, var(--soft) 0%, var(--paper) 100%);">
+    <div class="wrap" style="max-width: 700px; margin: 0 auto; text-align: center;">
+        <h3 style="font-size: 26px; font-weight: 700; color: var(--navy); margin-bottom: 16px; line-height: 1.3;">
+            Have an operational problem that needs a custom solution?
+        </h3>
+        <p style="color: var(--muted); margin-bottom: 28px; font-size: 18px; line-height: 1.6;">
+            Let's talk about whether we should build it together.
+        </p>
+        <a href="contact.html" style="display: inline-block; background: var(--emerald); color: white; padding: 16px 32px; border-radius: 12px; font-weight: 700; text-decoration: none; transition: all 0.3s ease; font-size: 16px; box-shadow: 0 4px 12px rgba(18,128,97,0.25);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(18,128,97,0.35)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(18,128,97,0.25)'">
+            Start a Conversation →
+        </a>
+    </div>
+</section>
+
+<section class="section-alt">
+    <div class="wrap">
+        <h2 class="section-title" style="text-align: center; margin-bottom: 48px;">Current Projects</h2>
+        
+        <!-- Featured Project: Interview AI -->
+        <div class="project-featured">
+            <span class="project-status">🚀 Active Development</span>
+            <h2>Interview Authenticity Intelligence</h2>
+            <p class="tagline">AI that detects when candidates are reading from scripts instead of thinking on their feet.</p>
+            
+            <div class="problem-solution">
+                <div class="ps-box">
+                    <h3>
+                        <span class="ps-icon">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                            </svg>
+                        </span>
+                        The Problem
+                    </h3>
+                    <ul>
+                        <li>Candidates use ChatGPT to craft perfect answers</li>
+                        <li>They read from scripts positioned off-camera</li>
+                        <li>Traditional AI interviews can't detect rehearsed responses</li>
+                        <li>Hiring managers waste time on polished frauds</li>
+                        <li>Remote work makes interview authenticity harder to gauge</li>
+                    </ul>
+                </div>
+                
+                <div class="ps-box">
+                    <h3>
+                        <span class="ps-icon">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </span>
+                        The Solution
+                    </h3>
+                    <ul>
+                        <li>Real-time behavioral analysis during video interviews</li>
+                        <li>Detect gaze patterns indicating off-screen reading</li>
+                        <li>Analyze speech cadence and authenticity markers</li>
+                        <li>Identify rehearsed vs. spontaneous responses</li>
+                        <li>Give hiring managers integrity insights</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="approach-box">
+                <h3>Our Approach: Ethical AI Deployment</h3>
+                <p>
+                    Candidates deserve to know they're being recorded and analyzed. We're transparent about using AI without telegraphing every technique. This maintains assessment integrity while respecting candidate privacy.
+                </p>
+                <p><strong>Our consent language:</strong></p>
+                <div class="consent-example">
+                    "We record video interviews as part of our hiring process. This helps us evaluate all candidates fairly and consistently. Do you wish to continue?"
+                </div>
+            </div>
+            
+            <h3 style="font-size: 24px; font-weight: 800; color: var(--navy); margin-bottom: 24px;">Ideal Use Cases</h3>
+            
+            <div class="use-cases">
+                <div class="use-case">
+                    <div class="use-case-icon">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h4>High-Volume Remote Hiring</h4>
+                    <p>Scale screening without sacrificing quality</p>
+                </div>
+                
+                <div class="use-case">
+                    <div class="use-case-icon">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                    </div>
+                    <h4>Sales & Customer-Facing Roles</h4>
+                    <p>Authenticity is critical to success</p>
+                </div>
+                
+                <div class="use-case">
+                    <div class="use-case-icon">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                        </svg>
+                    </div>
+                    <h4>Executive Screening</h4>
+                    <p>High-stakes positions requiring genuine leadership</p>
+                </div>
+                
+                <div class="use-case">
+                    <div class="use-case-icon">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h4>Fast-Growing Startups</h4>
+                    <p>Need to hire quickly without compromising quality</p>
+                </div>
+            </div>
+
+            <h3 style="font-size: 20px; font-weight: 700; color: var(--navy); margin: 32px 0 16px;">Technology Stack</h3>
+            <div class="tech-stack">
+                <span class="tech-badge">Computer Vision</span>
+                <span class="tech-badge">Natural Language Processing</span>
+                <span class="tech-badge">Real-time Video Analysis</span>
+                <span class="tech-badge">Behavioral Analytics</span>
+                <span class="tech-badge">Cloud Infrastructure</span>
+            </div>
+        </div>
+
+        <!-- Other Projects -->
+        <h2 class="section-title" style="text-align: center; margin: 80px 0 48px;">Other Projects</h2>
+        
+        <div class="project-grid">
+            <div class="project-card">
+                <span class="project-card-status">In Production</span>
+                <h3>Review Management System</h3>
+                <p>Turn customer testimonials into search engine-indexed pages. Each review becomes a unique webpage—multiplying web presence and capturing long-tail search traffic competitors miss.</p>
+            </div>
+            
+            <div class="project-card">
+                <span class="project-card-status">Prototype</span>
+                <h3>Custom Workflow Automation</h3>
+                <p>Purpose-built automation for complex business processes that don't fit standard tools. When Zapier isn't enough, we build the middleware.</p>
+            </div>
+            
+            <div class="project-card">
+                <span class="project-card-status">Research</span>
+                <h3>Predictive Operations Intelligence</h3>
+                <p>ML models that predict operational bottlenecks before they happen. Early warning systems for capacity, demand, and resource allocation.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="wrap">
+        <div class="cta-section">
+            <h2>Want To Build With Us?</h2>
+            <p>Have an operational problem that needs a custom solution? Let's prototype it.</p>
+            <a href="contact.html" class="cta-button">Start a Conversation →</a>
+        </div>
+    </div>
+</section>
+
+<!-- Platform Integration Partners Section -->
+<section style="padding: 60px 0; background: linear-gradient(180deg, var(--soft) 0%, var(--paper) 100%);">
+    <div class="wrap" style="max-width: 900px;">
+        <div style="text-align: center; margin-bottom: 48px;">
+            <h2 style="font-size: 32px; margin-bottom: 12px; color: var(--navy);">Platform Agnostic Integration</h2>
+            <p style="color: var(--muted); max-width: 700px; margin: 0 auto; font-size: 17px; line-height: 1.7;">
+                We work with the tools you already use—whether they're industry giants or specialized platforms built for your niche. If it has an API, we can connect it.
+            </p>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 32px; align-items: center; justify-items: center;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" 
+                 alt="AWS" 
+                 style="height: 50px; width: auto; opacity: 0.85; transition: all 0.3s ease;"
+                 onmouseover="this.style.opacity='1'; this.style.transform='scale(1.05)'"
+                 onmouseout="this.style.opacity='0.85'; this.style.transform='scale(1)'">
+            
+            <img src="https://www.vectorlogo.zone/logos/twilio/twilio-icon.svg" 
+                 alt="Twilio" 
+                 style="height: 50px; width: auto; opacity: 0.85; transition: all 0.3s ease;"
+                 onmouseover="this.style.opacity='1'; this.style.transform='scale(1.05)'"
+                 onmouseout="this.style.opacity='0.85'; this.style.transform='scale(1)'">
+            
+            <img src="monday.com_logo.png" 
+                 alt="Monday.com" 
+                 style="height: 50px; width: auto; opacity: 0.85; transition: all 0.3s ease;"
+                 onmouseover="this.style.opacity='1'; this.style.transform='scale(1.05)'"
+                 onmouseout="this.style.opacity='0.85'; this.style.transform='scale(1)'">
+            
+            <img src="dialpad-logo.png" 
+                 alt="Dialpad" 
+                 style="height: 50px; width: auto; opacity: 0.85; transition: all 0.3s ease;"
+                 onmouseover="this.style.opacity='1'; this.style.transform='scale(1.05)'"
+                 onmouseout="this.style.opacity='0.85'; this.style.transform='scale(1)'">
+            
+            <img src="mrp_easy.png" 
+                 alt="MRPeasy" 
+                 style="height: 50px; width: auto; opacity: 0.85; transition: all 0.3s ease;"
+                 onmouseover="this.style.opacity='1'; this.style.transform='scale(1.05)'"
+                 onmouseout="this.style.opacity='0.85'; this.style.transform='scale(1)'">
+        </div>
+        
+        <p style="text-align: center; color: var(--muted); font-size: 15px; margin-top: 32px; font-style: italic;">
+            Plus HubSpot, Salesforce, Zapier, Make, and 100+ other platforms
+        </p>
+    </div>
+</section>
+
+<footer class="modern-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-col">
+      <img src="whitelogo.png" alt="Boxford Partners" class="footer-logo" style="height: 80px; width: auto;">
+      <p class="footer-tagline">Revenue operations systems that connect marketing, sales, and operations into one seamless engine.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="about.html">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="labs.html">Labs</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p style="color:#64748b; margin: 8px 0; font-size: 14px;">
+        Boxford Partners HQ<br>
+        345 California Street, Suite 600<br>
+        San Francisco, CA 94104
+      </p>
+      <p style="margin: 8px 0;">
+        <a href="mailto:hello@boxfordpartners.com">hello@boxfordpartners.com</a>
+      </p>
+    </div>
+    <div class="footer-col">
+      <h4>Stay in touch</h4>
+      <form class="subscribe-form" onsubmit="return false;">
+        <input type="email" placeholder="Your email" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="wrap bottom-wrap">
+      <span>© <span id="year"></span> Boxford Partners. All rights reserved.</span>
+      <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+        <a href="privacy.html" style="color: rgba(255,255,255,0.7); font-size: 14px; text-decoration: none;">Privacy Policy</a>
+        <a href="terms.html" style="color: rgba(255,255,255,0.7); font-size: 14px; text-decoration: none;">Terms of Service</a>
+        <span class="credit">Built for growth-minded businesses.</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('year').textContent = new Date().getFullYear();
+});
+
+function toggleMobileMenu() {
+    const nav = document.getElementById('mobileNav');
+    const btn = document.querySelector('.menu-btn');
+    nav.classList.toggle('show');
+    btn.classList.toggle('open');
+}
+</script>
+
+</body>
+</html>

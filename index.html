@@ -1,0 +1,983 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Boxford Partners – AI-Powered Revenue Operations That Work</title>
+  <meta name="description" content="We build AI-powered revenue operations systems that eliminate inefficiencies and increase growth for $2M-$20M businesses. Results in weeks, not quarters.">
+  <style>
+    :root {
+      --navy: #0A1B33;
+      --azure: #1E5BA8;
+      --emerald: #165A42;
+      --amber: #F59E0B;
+      --ink: #0f172a;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --bg: #fff;
+      --bg-soft: #f8fafc;
+      --bg-emerald-tint: #f0f9f6;
+      --bg-azure-tint: #f0f7fc;
+      --radius: 16px;
+      --shadow: 0 4px 12px rgba(2,8,23,.08);
+      --shadow-lg: 0 10px 40px rgba(2,8,23,.12);
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+    
+    a {
+      color: var(--navy);
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+    
+    a:hover {
+      color: var(--azure);
+    }
+    
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Header & Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.98);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+      padding: 16px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .logo-link {
+      display: flex;
+      align-items: center;
+      transition: transform 0.3s ease;
+    }
+    
+    .logo-link:hover {
+      transform: scale(1.02);
+    }
+    
+    .logo-main {
+      height: 70px;
+      width: auto;
+      display: block;
+    }
+    
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    
+    .nav-links a {
+      color: #374151;
+      font-weight: 600;
+      padding: 8px 12px;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--azure), var(--emerald));
+      transform: translateX(-50%);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-links a:hover {
+      color: var(--azure);
+    }
+    
+    .nav-links a:hover::after {
+      width: 80%;
+    }
+    
+    /* Header CTA Button */
+    .nav-cta {
+      background: var(--emerald) !important;
+      color: white !important;
+      border-radius: 8px;
+      padding: 10px 18px !important;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-cta:hover {
+      background: #1a7556 !important;
+      color: white !important;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(22,90,66,0.3);
+    }
+    
+    .nav-cta::after {
+      display: none !important;
+    }
+    
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      flex-direction: column;
+      gap: 5px;
+    }
+    
+    .menu-btn span {
+      width: 25px;
+      height: 3px;
+      background: var(--navy);
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+    
+    .menu-btn.open span:nth-child(1) {
+      transform: rotate(45deg) translate(7px, 7px);
+    }
+    
+    .menu-btn.open span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .menu-btn.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+    
+    @media (max-width: 768px) {
+      .menu-btn {
+        display: flex;
+      }
+      
+      .nav-links {
+        position: fixed;
+        top: 102px;
+        right: -100%;
+        background: white;
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+        padding: 24px;
+        box-shadow: -4px 0 20px rgba(0,0,0,0.1);
+        transition: right 0.3s ease;
+        gap: 16px;
+        align-items: stretch;
+      }
+      
+      .nav-cta {
+        text-align: center;
+        margin-top: 8px;
+      }
+      
+      .nav-links.show {
+        right: 0;
+      }
+    }
+    
+    /* Sections */
+    .section {
+      padding: 80px 0;
+      position: relative;
+    }
+    
+    .section-soft {
+      background: linear-gradient(180deg, var(--bg-soft) 0%, rgba(248,250,252,0.4) 100%);
+    }
+    
+    .section-emerald {
+      background: linear-gradient(135deg, var(--bg-emerald-tint) 0%, var(--bg-soft) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .section-emerald::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(22,90,66,0.05) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    
+    .section-azure {
+      background: linear-gradient(135deg, var(--bg-azure-tint) 0%, var(--bg-soft) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .section-azure::before {
+      content: '';
+      position: absolute;
+      bottom: -50%;
+      left: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(30,90,168,0.05) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    
+    .section-navy {
+      background: linear-gradient(135deg, var(--navy) 0%, #0d2847 100%);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .section-navy::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(22,90,66,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(30,90,168,0.1) 0%, transparent 50%);
+    }
+    
+    /* Hero */
+    .hero {
+      padding-top: 40px;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, #ffffff 0%, var(--bg-soft) 50%, var(--bg-azure-tint) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -5%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(30,90,168,0.08) 0%, transparent 60%);
+      border-radius: 50%;
+      animation: float 8s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-20px, -20px); }
+    }
+    
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    
+    @media (max-width: 968px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+    
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      animation: fadeInUp 0.8s ease-out;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    h1 {
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+    }
+    
+    h1 .highlight {
+      background: linear-gradient(135deg, var(--azure) 0%, var(--emerald) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .subtitle {
+      font-size: 19px;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 600px;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    
+    .cta-btn {
+      background: linear-gradient(135deg, var(--emerald) 0%, #1a7556 100%);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 16px rgba(22,90,66,0.3);
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(22,90,66,0.4);
+      background: linear-gradient(135deg, #1a7556 0%, var(--emerald) 100%);
+    }
+    
+    .btn-ghost {
+      background: transparent;
+      color: var(--navy);
+      padding: 16px 32px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 16px;
+      border: 2px solid var(--line);
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+    
+    .btn-ghost:hover {
+      border-color: var(--emerald);
+      color: var(--emerald);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(22,90,66,0.15);
+    }
+    
+    .hero-badges {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    
+    .badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--emerald) 0%, var(--azure) 100%);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.1); }
+    }
+    
+    .hero-visual {
+      position: relative;
+      animation: fadeIn 1s ease-out 0.3s backwards;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .video-wrap {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+      border: 3px solid rgba(22,90,66,0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .video-wrap:hover {
+      transform: scale(1.02);
+      box-shadow: 0 25px 80px rgba(0,0,0,0.2);
+      border-color: var(--emerald);
+    }
+    
+    .video-wrap video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    /* Social Proof Section - Ready for later */
+    .trusted-by {
+      padding: 40px 0;
+      background: var(--bg-soft);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      display: none; /* Hidden until you have logos */
+    }
+    
+    .trusted-by.active {
+      display: block;
+    }
+    
+    .trusted-by-inner {
+      text-align: center;
+    }
+    
+    .trusted-by-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 24px;
+    }
+    
+    .logo-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 48px;
+    }
+    
+    .logo-grid img {
+      height: 40px;
+      width: auto;
+      filter: grayscale(100%);
+      opacity: 0.6;
+      transition: all 0.3s ease;
+    }
+    
+    .logo-grid img:hover {
+      opacity: 1;
+      filter: grayscale(0%);
+    }
+    
+    /* Typography */
+    h2 {
+      font-size: clamp(32px, 4vw, 44px);
+      font-weight: 800;
+      margin-bottom: 16px;
+      color: var(--navy);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+    
+    .section-navy h2 {
+      color: white;
+    }
+    
+    h3 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--navy);
+    }
+    
+    .section-navy h3 {
+      color: white;
+    }
+    
+    /* Grid */
+    .grid {
+      display: grid;
+      gap: 32px;
+      margin-top: 48px;
+    }
+    
+    .grid-3 {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    
+    /* Cards */
+    .card {
+      background: white;
+      padding: 32px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--emerald) 0%, var(--azure) 100%);
+      transform: scaleY(0);
+      transition: transform 0.3s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(22,90,66,0.2);
+    }
+    
+    .card:hover::before {
+      transform: scaleY(1);
+    }
+    
+    .section-navy .card {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      border-color: rgba(255,255,255,0.1);
+    }
+    
+    .section-navy .card:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: var(--emerald);
+    }
+    
+    .pill {
+      display: inline-block;
+      padding: 8px 16px;
+      background: linear-gradient(135deg, var(--bg-emerald-tint) 0%, var(--bg-azure-tint) 100%);
+      color: var(--emerald);
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-top: 16px;
+      border: 1px solid rgba(22,90,66,0.2);
+    }
+    
+    .section-navy .pill {
+      background: rgba(255,255,255,0.1);
+      color: white;
+      border-color: rgba(255,255,255,0.2);
+    }
+    
+    /* Footer */
+    
+  .modern-footer {
+    background: linear-gradient(135deg, var(--navy) 0%, #0d2847 100%);
+    color: white;
+    padding: 60px 0 0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+@media (max-width: 768px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}
+
+.footer-col h4 {
+    margin: 0 0 16px;
+    font-weight: 700;
+    color: #fff;
+    font-size: 16px;
+}
+
+@media (max-width: 768px) {
+    .footer-col h4 {
+        text-align: center;
+    }
+}
+
+.footer-col a {
+    color: rgba(255,255,255,0.7);
+    display: block;
+    margin: 8px 0;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.25s ease;
+}
+
+@media (max-width: 768px) {
+    .footer-col a {
+        text-align: center;
+    }
+}
+
+.footer-col a:hover {
+    color: white;
+}
+
+.footer-logo {
+    height: 60px;
+    width: auto;
+    margin-bottom: 16px;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .footer-logo {
+        margin: 0 auto 16px;
+    }
+}
+
+.footer-tagline {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.6;
+    max-width: 280px;
+}
+
+@media (max-width: 768px) {
+    .footer-tagline {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
+
+.subscribe-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+@media (max-width: 768px) {
+    .subscribe-form {
+        align-items: center;
+    }
+}
+
+.subscribe-form input {
+    width: 100%;
+    max-width: 260px;
+    padding: 10px 14px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    font-size: 14px;
+    background: #fff;
+}
+
+.subscribe-form button {
+    padding: 10px 20px;
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.25s ease;
+}
+
+.subscribe-form button:hover {
+    background: #0b1829;
+}
+
+.footer-bottom {
+    padding: 24px 0;
+}
+
+.bottom-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: var(--muted);
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+@media (max-width: 768px) {
+    .bottom-wrap {
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+.credit {
+    font-size: 14px;
+    opacity: 0.7;
+}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="header-content">
+      <a class="logo-link" href="index.html">
+        <img src="Screen_Shot_2025-10-07_at_3.15.56_PM-removebg-preview.png"
+             alt="Boxford Partners logo"
+             class="logo-main">
+      </a>
+      
+      <button class="menu-btn" onclick="toggleMobileMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <nav class="nav-links" id="mobileNav">
+        <a href="index.html" onclick="closeMobileMenu()">Home</a>
+        <a href="services.html" onclick="closeMobileMenu()">Services</a>
+        <a href="about.html" onclick="closeMobileMenu()">About</a>
+        <a href="faq.html" onclick="closeMobileMenu()">FAQ</a>
+        <a href="auditlanding.html" class="nav-cta" onclick="closeMobileMenu()">Start AI Readiness Audit</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<section class="section hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <h1>Stop Losing Revenue to <span class="highlight">Broken Systems</span></h1>
+        <p class="subtitle">
+          We build AI-powered revenue operations systems that connect your marketing, sales, and operations—so you stop missing leads, losing deals, and wasting money. Results in weeks, not quarters.
+        </p>
+        <div class="hero-buttons">
+          <a class="cta-btn" href="auditlanding.html">Start AI Readiness Audit</a>
+          <a class="btn-ghost" href="services.html">See How We Help</a>
+        </div>
+        <div class="hero-badges">
+          <span class="badge"><span class="badge-dot"></span> AI-Powered CRM Integration</span>
+          <span class="badge"><span class="badge-dot"></span> Intelligent Sales Automation</span>
+          <span class="badge"><span class="badge-dot"></span> AI Lead Response</span>
+          <span class="badge"><span class="badge-dot"></span> Revenue Recovery</span>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="video-wrap">
+          <video src="14485843_3840_2160_25fps.mp4" autoplay muted loop playsinline></video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Social Proof Section - Hidden until you have logos -->
+<!-- To activate: add class="active" to the section below and add your logo images -->
+<section class="trusted-by">
+  <div class="wrap trusted-by-inner">
+    <h4 class="trusted-by-title">Trusted by leading $2M-$20M service businesses</h4>
+    <div class="logo-grid">
+      <!-- Add your partner logos here when ready -->
+      <!-- <img src="partner-logo-1.png" alt="Partner 1"> -->
+      <!-- <img src="partner-logo-2.png" alt="Partner 2"> -->
+    </div>
+  </div>
+</section>
+
+<section id="services" class="section section-emerald">
+  <div class="wrap">
+    <h2>What We Fix</h2>
+    <p class="subtitle">The three biggest revenue killers for $2M-$20M businesses—and how AI solves them.</p>
+    <div class="grid grid-3">
+      <div class="card">
+        <h3>Slow Lead Response</h3>
+        <p class="subtitle">Leads come in, but nobody responds for hours or days. By then, they've moved on to your competitor. Interest decays by the minute.</p>
+        <p class="pill">AI routes & follows up in under 2 minutes</p>
+      </div>
+      <div class="card">
+        <h3>Disconnected Tools</h3>
+        <p class="subtitle">Your CRM doesn't talk to your calendar. Marketing doesn't know what sales is doing. Duplicate data and messy handoffs poison everything downstream.</p>
+        <p class="pill">AI connects & syncs everything seamlessly</p>
+      </div>
+      <div class="card">
+        <h3>Manual Handoffs</h3>
+        <p class="subtitle">Every deal requires manual work—data entry, follow-ups, scheduling. Your team wastes hours on tasks that should be automated, while AI-assisted workflows quietly remove friction.</p>
+        <p class="pill">AI automates the busy work</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work" class="section section-azure">
+  <div class="wrap">
+    <h2>Real Results</h2>
+    <p class="subtitle">Here's what happens when your systems—powered by AI—actually work.</p>
+    <div class="grid grid-3">
+      <article class="card">
+        <h3>AI-Powered Review Capture</h3>
+        <p class="subtitle">SMS review requests sent automatically after every job, with AI determining optimal send times. Public review pages for SEO.</p>
+        <span class="pill">+35% more reviews, +22% inbound calls</span>
+      </article>
+
+      <article class="card">
+        <h3>Intelligent Lead Response</h3>
+        <p class="subtitle">AI-assisted routing and instant automated follow-up when leads come in. Smart qualification ensures no opportunity is missed.</p>
+        <span class="pill">Under 2-minute response, 40% higher close rate</span>
+      </article>
+
+      <article class="card">
+        <h3>AI-Driven CRM Integration</h3>
+        <p class="subtitle">Marketing, sales, and operations working from the same system. AI enriches data, predicts next actions, eliminates manual entry.</p>
+        <span class="pill">8 hours/week saved per person</span>
+      </article>
+    </div>
+    
+    <!-- Case Study Cards - Ready for when you have real data -->
+    <!-- Uncomment and populate when ready:
+    <div class="grid grid-3" style="margin-top: 32px;">
+      <article class="card">
+        <h3>+47% Lead Conversion Rate</h3>
+        <p class="subtitle">Implemented AI-powered instant lead routing and automated SMS follow-up for HVAC company.</p>
+        <span class="pill">HVAC Company</span>
+      </article>
+      <article class="card">
+        <h3>+$180K Added Revenue</h3>
+        <p class="subtitle">Developed AI-driven automated system to re-engage cold leads for real estate brokerage.</p>
+        <span class="pill">Real Estate Brokerage</span>
+      </article>
+      <article class="card">
+        <h3>8 Hours Saved Per Person</h3>
+        <p class="subtitle">Integrated CRM with booking and billing using AI automation for auto detailing shop.</p>
+        <span class="pill">Auto Detailing Shop</span>
+      </article>
+    </div>
+    -->
+  </div>
+</section>
+
+<section class="section section-navy">
+  <div class="wrap">
+    <div class="card" style="padding: 64px; text-align: center;">
+      <h2>Ready to Stop Losing Revenue?</h2>
+      <p class="subtitle" style="margin: 20px auto 32px; max-width: 600px; color: rgba(255,255,255,0.8);">
+        Start with our AI Readiness Audit. We'll show you exactly where you're losing money—and how AI-powered automation can fix it. Two weeks. Fixed price. Results you can see.
+      </p>
+      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+        <a class="cta-btn" href="auditlanding.html">Start AI Readiness Audit</a>
+        <a class="btn-ghost" href="services.html" style="border-color: rgba(255,255,255,0.3); color: white;">Learn More</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="modern-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-col">
+      <img src="whitelogo.png" alt="Boxford Partners" class="footer-logo" style="height: 80px; width: auto;">
+      <p class="footer-tagline">Revenue operations systems that connect marketing, sales, and operations into one seamless engine.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="about.html">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="labs.html">Labs</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p style="color:#64748b; margin: 8px 0; font-size: 14px;">
+        Boxford Partners HQ<br>
+        345 California Street, Suite 600<br>
+        San Francisco, CA 94104
+      </p>
+      <p style="margin: 8px 0;">
+        <a href="mailto:hello@boxfordpartners.com">hello@boxfordpartners.com</a>
+      </p>
+    </div>
+    <div class="footer-col">
+      <h4>Stay in touch</h4>
+      <form class="subscribe-form" onsubmit="return false;">
+        <input type="email" placeholder="Your email" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="wrap bottom-wrap">
+      <span>© <span id="year"></span> Boxford Partners. All rights reserved.</span>
+      <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+        <a href="privacy.html" style="color: rgba(255,255,255,0.7); font-size: 14px; text-decoration: none;">Privacy Policy</a>
+        <a href="terms.html" style="color: rgba(255,255,255,0.7); font-size: 14px; text-decoration: none;">Terms of Service</a>
+        <span class="credit">Built for growth-minded businesses.</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Mobile menu
+function toggleMobileMenu() {
+  const nav = document.getElementById('mobileNav');
+  const btn = document.querySelector('.menu-btn');
+  nav.classList.toggle('show');
+  btn.classList.toggle('open');
+}
+
+function closeMobileMenu() {
+  const nav = document.getElementById('mobileNav');
+  const btn = document.querySelector('.menu-btn');
+  nav.classList.remove('show');
+  btn.classList.remove('open');
+}
+
+document.addEventListener('click', function(e) {
+  const nav = document.getElementById('mobileNav');
+  const btn = document.querySelector('.menu-btn');
+  
+  if (nav && btn && !nav.contains(e.target) && !btn.contains(e.target)) {
+    nav.classList.remove('show');
+    btn.classList.remove('open');
+  }
+});
+
+// Set year
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
