@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Audit Lite — 3–5 Day Revenue Diagnostic | Boxford Partners</title>
+  <meta name="description" content="A fixed‑price, 3–5 day diagnostic that reveals your top 3 revenue leaks and 3 fixes. Clear process, secure checkout, no fluff." />
+  <meta name="theme-color" content="#0A1B33" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230A1B33'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter, Arial, sans-serif' font-size='28' fill='%23FFFFFF'%3EBP%3C/text%3E%3C/svg%3E">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  <style>
+    /* Main Site CSS Variables and Base Styles */
+    :root {
+      --navy: #0A1B33;
+      --azure: #1E5BA8;
+      --emerald: #165A42;
+      --amber: #F59E0B;
+      --ink: #0f172a;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --bg: #fff;
+      --bg-soft: #f8fafc;
+      --bg-emerald-tint: #f0f9f6;
+      --bg-azure-tint: #f0f7fc;
+      --radius: 16px;
+      --shadow: 0 4px 12px rgba(2,8,23,.08);
+      --shadow-lg: 0 10px 40px rgba(2,8,23,.12);
+      --graphite: #0f172a;
+      --slate: #64748b;
+      --mist: #f8fafc;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body { 
+      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+    
+    a {
+      color: var(--navy);
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+    
+    a:hover {
+      color: var(--azure);
+    }
+    
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Header & Navigation from Main Site */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.98);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+      padding: 16px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .logo-link {
+      display: flex;
+      align-items: center;
+      transition: transform 0.3s ease;
+    }
+    
+    .logo-link:hover {
+      transform: scale(1.02);
+    }
+    
+    .logo-main {
+      height: 70px;
+      width: auto;
+      display: block;
+    }
+    
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    
+    .nav-links a {
+      color: #374151;
+      font-weight: 600;
+      padding: 8px 12px;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--azure), var(--emerald));
+      transform: translateX(-50%);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-links a:hover {
+      color: var(--azure);
+    }
+    
+    .nav-links a:hover::after {
+      width: 80%;
+    }
+    
+    .nav-cta {
+      background: var(--emerald) !important;
+      color: white !important;
+      border-radius: 8px;
+      padding: 10px 18px !important;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-cta:hover {
+      background: #1a7556 !important;
+      color: white !important;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(22,90,66,0.3);
+    }
+    
+    .nav-cta::after {
+      display: none !important;
+    }
+    
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      flex-direction: column;
+      gap: 5px;
+    }
+    
+    .menu-btn span {
+      width: 25px;
+      height: 3px;
+      background: var(--navy);
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+    
+    .menu-btn.open span:nth-child(1) {
+      transform: rotate(45deg) translate(7px, 7px);
+    }
+    
+    .menu-btn.open span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .menu-btn.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+    
+    @media (max-width: 768px) {
+      .menu-btn {
+        display: flex;
+      }
+      
+      .nav-links {
+        position: fixed;
+        top: 102px;
+        right: -100%;
+        background: white;
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+        padding: 24px;
+        box-shadow: -4px 0 20px rgba(0,0,0,0.1);
+        transition: right 0.3s ease;
+        gap: 16px;
+        align-items: stretch;
+      }
+      
+      .nav-cta {
+        text-align: center;
+        margin-top: 8px;
+      }
+      
+      .nav-links.show {
+        right: 0;
+      }
+    }
+    
+    /* Footer Styles from Main Site */
+    .modern-footer {
+      background: linear-gradient(135deg, var(--navy) 0%, #0d2847 100%);
+      color: white;
+      padding: 60px 0 0;
+      position: relative;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    @media (max-width: 768px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+    
+    .footer-col h4 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: white;
+    }
+    
+    .footer-col a {
+      display: block;
+      color: rgba(255,255,255,0.7);
+      margin: 8px 0;
+      font-size: 14px;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-col a:hover {
+      color: white;
+    }
+    
+    .footer-logo {
+      margin-bottom: 16px;
+    }
+    
+    .footer-tagline {
+      color: rgba(255,255,255,0.7);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    
+    .subscribe-form {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    
+    .subscribe-form input {
+      flex: 1;
+      padding: 10px 14px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.05);
+      color: white;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    
+    .subscribe-form input::placeholder {
+      color: rgba(255,255,255,0.4);
+    }
+    
+    .subscribe-form button {
+      padding: 10px 20px;
+      background: var(--emerald);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .subscribe-form button:hover {
+      background: #1a7556;
+      transform: translateY(-2px);
+    }
+    
+    .footer-bottom {
+      padding: 24px 0;
+    }
+    
+    .bottom-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: rgba(255,255,255,0.5);
+      font-size: 14px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    
+    .credit {
+      color: rgba(255,255,255,0.4);
+      font-size: 13px;
+    }
+    
+    /* Landing Page Specific Styles */
+    .section-pad { 
+      padding-top: 5rem; 
+      padding-bottom: 5rem; 
+    }
+    
+    .section-pad-lg { 
+      padding-top: 6rem; 
+      padding-bottom: 6rem; 
+    }
+    
+    .shadow-soft { 
+      box-shadow: 0 10px 30px rgba(10, 27, 51, 0.12); 
+    }
+    
+    .shadow-emerald {
+      box-shadow: 0 4px 14px rgba(22, 90, 66, 0.15);
+    }
+    
+    html { 
+      scroll-behavior: smooth; 
+    }
+
+    /* Table styling with brand colors */
+    table {
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+    
+    .table-cell {
+      padding: 1.5rem 1.25rem;
+      border-bottom: 1px solid #e2e8f0;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+    
+    .table-cell-header {
+      background: linear-gradient(180deg, #ffffff 0%, var(--mist) 100%);
+      font-size: 0.875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--graphite);
+      padding: 1.5rem 1.25rem;
+      border-bottom: 2px solid #e2e8f0;
+      text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+      position: relative;
+    }
+    
+    .table-cell:first-child {
+      border-right: 4px solid var(--navy);
+      background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+      font-weight: 600;
+      box-shadow: 4px 0 8px rgba(10, 27, 51, 0.05);
+    }
+    
+    .table-cell-header:first-child {
+      border-right: 4px solid var(--navy);
+      background: linear-gradient(135deg, var(--navy) 0%, var(--azure) 100%);
+      color: white;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    }
+    
+    .col-free {
+      background: white;
+    }
+    
+    .col-free:hover {
+      background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%) !important;
+      box-shadow: 0 4px 12px rgba(100, 116, 139, 0.15);
+      transform: translateY(-2px);
+    }
+    
+    .table-cell-header.col-free-header {
+      background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+      color: white;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    }
+    
+    .col-lite {
+      background: linear-gradient(135deg, #f0f9f6 0%, #ecfdf5 100%);
+      border-left: 3px solid var(--emerald);
+      border-right: 3px solid var(--emerald);
+      font-weight: 600;
+    }
+    
+    .col-lite.top {
+      border-top: 3px solid var(--emerald);
+    }
+    
+    .col-lite.bottom {
+      border-bottom: 3px solid var(--emerald);
+    }
+    
+    .col-lite:hover {
+      background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%) !important;
+      box-shadow: 0 8px 20px rgba(22, 90, 66, 0.25);
+      transform: translateY(-4px) scale(1.02);
+    }
+    
+    .table-cell-header.col-lite-header {
+      background: linear-gradient(135deg, var(--emerald) 0%, #10b981 100%);
+      color: white;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+      border-top: 3px solid var(--emerald);
+      border-left: 3px solid var(--emerald);
+      border-right: 3px solid var(--emerald);
+      position: relative;
+      padding-top: 2.5rem;
+    }
+    
+    .table-cell-header.col-lite-header::before {
+      content: "⭐ MOST POPULAR";
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+      color: white;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.6rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
+      white-space: nowrap;
+    }
+    
+    .col-full {
+      background: white;
+    }
+    
+    .col-full:hover {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%) !important;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+      transform: translateY(-2px);
+    }
+    
+    .table-cell-header.col-full-header {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      color: white;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    }
+    
+    .price-tag::before { content: "💰 "; }
+    .time-tag::before { content: "⏱️ "; }
+    .deliverable-tag::before { content: "📄 "; }
+    .depth-tag::before { content: "🔍 "; }
+    .fixes-tag::before { content: "🔧 "; }
+    .call-tag::before { content: "📞 "; }
+
+    /* Micro-animations */
+    .hover-lift {
+      transition: all 0.3s ease;
+    }
+    
+    .hover-lift:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 40px rgba(10, 27, 51, 0.15);
+    }
+    
+    .emerald-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--emerald);
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 0.5rem;
+    }
+
+    /* FAQ accordion */
+    details > summary { 
+      list-style: none; 
+    }
+    
+    details > summary::-webkit-details-marker { 
+      display: none; 
+    }
+    
+    details > summary .plus-minus::before { 
+      content: '+'; 
+    }
+    
+    details[open] > summary .plus-minus::before { 
+      content: '−'; 
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 antialiased">
+  
+  <!-- Header from Main Site -->
+  <header>
+    <div class="wrap">
+      <div class="header-content">
+        <a class="logo-link" href="index.html">
+          <img src="Screen_Shot_2025-10-07_at_3.15.56_PM-removebg-preview.png"
+               alt="Boxford Partners logo"
+               class="logo-main">
+        </a>
+        
+        <button class="menu-btn" onclick="toggleMobileMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        
+        <nav class="nav-links" id="mobileNav">
+          <a href="index.html" onclick="closeMobileMenu()">Home</a>
+          <a href="services.html" onclick="closeMobileMenu()">Services</a>
+          <a href="about.html" onclick="closeMobileMenu()">About</a>
+          <a href="faq.html" onclick="closeMobileMenu()">FAQ</a>
+          <a href="auditlanding.html" class="nav-cta" onclick="closeMobileMenu()">Start AI Readiness Audit</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+  
+  <!-- Progress Banner -->
+  <div class="text-center text-sm py-2" style="background: linear-gradient(135deg, #f0f7fc 0%, #f0f9f6 100%); color: var(--graphite);">
+    <span class="font-semibold" style="color: var(--azure);">Step 1 of 2:</span> Purchase &nbsp;•&nbsp; <span class="text-gray-500">Step 2 of 2: Intake Form</span>
+  </div>
+
+  <!-- Hero -->
+  <section class="section-pad-lg border-b" style="background: linear-gradient(135deg, #f0f9f6 0%, #ffffff 50%, #f0f7fc 100%); border-color: var(--mist);">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight" style="color: var(--graphite);">
+        Get a Revenue Leak Scorecard in <span style="color: var(--azure);">3–5 Days</span>
+      </h1>
+      <p class="text-lg md:text-xl mb-6 max-w-2xl mx-auto leading-relaxed" style="color: var(--slate);">
+        <strong style="color: var(--navy);">Audit Lite</strong> is a fixed‑price diagnostic. We analyze your systems and deliver a 1‑page scorecard with your top 3 leaks and 3 actionable fixes—clear, fast, and practical.
+      </p>
+
+      <!-- Trust signals -->
+      <div class="flex flex-wrap gap-2 justify-center mb-8">
+        <span class="px-3 py-1 rounded-full text-sm font-medium" style="background-color: #f0f7fc; color: var(--azure);">
+          <span class="emerald-dot"></span>Secure Stripe Checkout
+        </span>
+        <span class="px-3 py-1 rounded-full text-sm font-medium" style="background-color: #f0f9f6; color: var(--emerald);">
+          <span class="emerald-dot"></span>No ongoing commitment
+        </span>
+        <span class="px-3 py-1 rounded-full text-sm font-medium" style="background-color: #f0f7fc; color: var(--azure);">
+          <span class="emerald-dot"></span>Mobile‑first report
+        </span>
+      </div>
+
+      <!-- CTAs -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-3">
+        <!-- TODO: Replace with your actual Stripe Payment Link -->
+        <a href="https://pay.boxfordpartners.com/b/bJebJ2cOO6pI2bU7CF5gc01" class="inline-flex items-center justify-center text-lg text-white rounded-lg px-6 py-3 font-semibold shadow-soft hover-lift" style="background: linear-gradient(135deg, var(--azure) 0%, var(--emerald) 100%);">
+          Purchase Audit Lite — $1,750
+        </a>
+        <a href="https://pay.boxfordpartners.com/b/5kQaEY166g0i3fY7CF5gc00" class="text-lg rounded-lg px-6 py-3 font-semibold border-2 transition-all hover-lift" style="border-color: var(--navy); color: var(--navy); background: white;">
+          See Full Audit ($3,500) →
+        </a>
+      </div>
+      
+      <p class="text-sm flex items-center gap-2 justify-center" style="color: var(--slate);">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" style="color: var(--emerald);" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.707a1 1 0 00-1.414-1.414L9 10.172 7.707 8.879a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+        </svg>
+        Secure checkout via Stripe • Instant receipt • Redirect to intake form
+      </p>
+
+      <!-- Founder's Note -->
+      <div class="mt-12 text-left max-w-2xl mx-auto bg-white rounded-xl p-6 border shadow-emerald hover-lift" style="border-color: var(--emerald); border-width: 2px;">
+        <h3 class="font-semibold mb-2" style="color: var(--navy);">A Note from the Founder</h3>
+        <p class="text-sm" style="color: var(--slate);">
+          "Audit Lite was designed after working alongside SMB owners who needed quick clarity, not a months‑long engagement. You'll get a direct, actionable read on what's costing you revenue—no fluff, just fixes."
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section id="how" class="section-pad bg-white">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-3" style="color: var(--graphite);">How It Works</h2>
+        <p class="text-lg" style="color: var(--slate);">Simple, transparent, and built for speed.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="rounded-2xl p-8 border-2 shadow-soft hover-lift" style="background: linear-gradient(135deg, #f0f7fc 0%, white 100%); border-color: var(--azure);">
+          <div class="w-10 h-10 rounded-full text-white flex items-center justify-center text-lg font-bold mb-4" style="background: var(--azure);">1</div>
+          <h3 class="text-xl font-bold mb-2" style="color: var(--navy);">Purchase & Intake</h3>
+          <p style="color: var(--slate);">Buy via Stripe. You're redirected to the intake form and a link to book your 30‑min walkthrough call.</p>
+        </div>
+        
+        <div class="rounded-2xl p-8 border-2 shadow-soft hover-lift" style="background: linear-gradient(135deg, #f0f9f6 0%, white 100%); border-color: var(--emerald);">
+          <div class="w-10 h-10 rounded-full text-white flex items-center justify-center text-lg font-bold mb-4" style="background: var(--emerald);">2</div>
+          <h3 class="text-xl font-bold mb-2" style="color: var(--navy);">We Review Systems</h3>
+          <p style="color: var(--slate);">We analyze your tech stack, workflows, and revenue operations to pinpoint leaks.</p>
+        </div>
+        
+        <div class="rounded-2xl p-8 border-2 shadow-soft hover-lift" style="background: linear-gradient(135deg, #f0f7fc 0%, white 100%); border-color: var(--azure);">
+          <div class="w-10 h-10 rounded-full text-white flex items-center justify-center text-lg font-bold mb-4" style="background: var(--azure);">3</div>
+          <h3 class="text-xl font-bold mb-2" style="color: var(--navy);">Scorecard Delivered</h3>
+          <p style="color: var(--slate);">3–5 days later, you get a 1‑page scorecard + 30‑min walkthrough call with actionable fixes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Table -->
+  <section id="compare" class="section-pad" style="background-color: var(--mist);">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-3" style="color: var(--graphite);">Compare Your Options</h2>
+        <p class="text-lg" style="color: var(--slate);">Choose the right fit for where you are today.</p>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-soft overflow-hidden border comparison-table" style="border-color: var(--emerald);">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left">
+            <thead>
+              <tr>
+                <th class="table-cell-header">Features</th>
+                <th class="table-cell-header col-free-header text-center">Free Checkpoint</th>
+                <th class="table-cell-header col-lite-header text-center">Audit Lite</th>
+                <th class="table-cell-header col-full-header text-center">Full AI Audit</th>
+              </tr>
+            </thead>
+            <tbody class="text-sm">
+              <tr>
+                <td class="table-cell" style="color: var(--graphite);">Price</td>
+                <td class="table-cell col-free text-center price-tag">Free</td>
+                <td class="table-cell col-lite top text-center price-tag" style="color: var(--emerald);">$1,750</td>
+                <td class="table-cell col-full text-center price-tag">$3,500</td>
+              </tr>
+              <tr>
+                <td class="table-cell" style="color: var(--graphite);">Timeline</td>
+                <td class="table-cell col-free text-center time-tag">15 minutes</td>
+                <td class="table-cell col-lite text-center time-tag" style="color: var(--emerald);">3–5 days</td>
+                <td class="table-cell col-full text-center time-tag">2 weeks</td>
+              </tr>
+              <tr>
+                <td class="table-cell" style="color: var(--graphite);">Deliverable</td>
+                <td class="table-cell col-free text-center deliverable-tag">Verbal diagnosis</td>
+                <td class="table-cell col-lite text-center deliverable-tag" style="color: var(--emerald);">1-page scorecard</td>
+                <td class="table-cell col-full text-center deliverable-tag">Full implementation blueprint</td>
+              </tr>
+              <tr>
+                <td class="table-cell" style="color: var(--graphite);">System Review Depth</td>
+                <td class="table-cell col-free text-center depth-tag">Surface-level</td>
+                <td class="table-cell col-lite text-center depth-tag" style="color: var(--emerald);">Top 3 leaks identified</td>
+                <td class="table-cell col-full text-center depth-tag">Full system audit</td>
+              </tr>
+              <tr>
+                <td class="table-cell" style="color: var(--graphite);">Actionable Fixes</td>
+                <td class="table-cell col-free text-center fixes-tag">1 recommendation</td>
+                <td class="table-cell col-lite text-center fixes-tag" style="color: var(--emerald);">3 prioritized fixes</td>
+                <td class="table-cell col-full text-center fixes-tag">Complete roadmap</td>
+              </tr>
+              <tr>
+                <td class="table-cell" style="color: var(--graphite);">Follow-up Call</td>
+                <td class="table-cell col-free text-center call-tag">—</td>
+                <td class="table-cell col-lite bottom text-center call-tag" style="color: var(--emerald);">30-min walkthrough</td>
+                <td class="table-cell col-full text-center call-tag">60-min strategy session</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Purchase CTA -->
+  <section id="purchase" class="section-pad bg-white border-y" style="border-color: var(--mist);">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-3" style="color: var(--graphite);">Stop Guessing. Start Fixing.</h2>
+      <p class="text-lg mb-8" style="color: var(--slate);">Fixed price. No surprises. Redirect to intake after payment.</p>
+      <!-- TODO: Replace with your actual Stripe Payment Link -->
+      <a href="https://buy.stripe.com/YOUR_PAYMENT_LINK" class="inline-flex items-center justify-center text-lg text-white rounded-lg px-6 py-3 font-semibold shadow-soft hover-lift" style="background: linear-gradient(135deg, var(--azure) 0%, var(--emerald) 100%);">
+        Purchase Audit Lite — $1,750
+      </a>
+      <p class="text-xs mt-3" style="color: var(--slate);">Have questions first? <a class="underline transition-colors" style="color: var(--azure);" href="mailto:hello@boxfordpartners.com">Email us</a>.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="section-pad-lg" style="background-color: var(--mist);">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-2" style="color: var(--graphite);">What You Should Know</h2>
+      </div>
+
+      <div class="space-y-4">
+        <details class="bg-white rounded-lg p-6 shadow-soft border hover-lift open:shadow-md transition-all" style="border-color: var(--mist);">
+          <summary class="faq-toggle cursor-pointer font-semibold text-lg flex justify-between items-center" style="color: var(--navy);">
+            <span>What happens *right* after I pay?</span>
+            <span class="plus-minus text-2xl font-light" style="color: var(--azure);">+</span>
+          </summary>
+          <p class="mt-4" style="color: var(--slate);">You'll be immediately redirected to our secure intake form. After you submit the form, you'll get a link to book your 30‑minute walkthrough call (3–5 days out). We start the review immediately after we receive your intake.</p>
+        </details>
+        
+        <details class="bg-white rounded-lg p-6 shadow-soft border hover-lift open:shadow-md transition-all" style="border-color: var(--mist);">
+          <summary class="faq-toggle cursor-pointer font-semibold text-lg flex justify-between items-center" style="color: var(--navy);">
+            <span>What's the difference between the Free, Lite, and Full audits?</span>
+            <span class="plus-minus text-2xl font-light" style="color: var(--azure);">+</span>
+          </summary>
+          <p class="mt-4" style="color: var(--slate);">
+            • <strong>Free Checkpoint:</strong> A 15-min call to give a *verbal diagnosis* of one problem.<br>
+            • <strong>Audit Lite ($1,750):</strong> A 3-5 day review to deliver a *written scorecard* of your top 3 problems.<br>
+            • <strong>Full Audit ($3,500):</strong> A 2-week sprint to deliver a *full implementation blueprint* for your entire system.
+          </p>
+        </details>
+
+        <details class="bg-white rounded-lg p-6 shadow-emerald border-2 hover-lift open:shadow-md transition-all" style="border-color: var(--emerald);" open>
+          <summary class="faq-toggle cursor-pointer font-semibold text-lg flex justify-between items-center" style="color: var(--emerald);">
+            <span>Pro-Tip: Can I credit this toward the Full Audit?</span>
+            <span class="plus-minus text-2xl font-light" style="color: var(--emerald);">+</span>
+          </summary>
+          <p class="mt-4" style="color: var(--slate);"><strong style="color: var(--emerald);">Yes. 100%.</strong> This is our most popular path. If you purchase the $1,750 "Audit Lite" and decide within 30 days that you're ready for the "Full AI Readiness Audit," we will apply your $1,750 payment as a full credit toward the $3,500 price.</p>
+        </details>
+
+        <details class="bg-white rounded-lg p-6 shadow-soft border hover-lift open:shadow-md transition-all" style="border-color: var(--mist);">
+          <summary class="faq-toggle cursor-pointer font-semibold text-lg flex justify-between items-center" style="color: var(--navy);">
+            <span>What exactly do I receive?</span>
+            <span class="plus-minus text-2xl font-light" style="color: var(--azure);">+</span>
+          </summary>
+          <p class="mt-4" style="color: var(--slate);">A 1‑page scorecard (PDF) outlining your top 3 revenue leaks and 3 prioritized, actionable fixes. You also get a 30‑minute walkthrough call with our team to discuss the findings and your next steps.</p>
+        </details>
+
+        <details class="bg-white rounded-lg p-6 shadow-soft border hover-lift open:shadow-md transition-all" style="border-color: var(--mist);">
+          <summary class="faq-toggle cursor-pointer font-semibold text-lg flex justify-between items-center" style="color: var(--navy);">
+            <span>Do I need to prepare anything?</span>
+            <span class="plus-minus text-2xl font-light" style="color: var(--azure);">+</span>
+          </summary>
+          <p class="mt-4" style="color: var(--slate);">Just complete the short intake form after purchase. It will ask what tools you use and what you *think* the biggest problem is. If we need secure, read‑only access to any tools for review, we'll request it securely.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer from Main Site -->
+  <footer class="modern-footer">
+    <div class="wrap footer-grid">
+      <div class="footer-col">
+        <img src="whitelogo.png" alt="Boxford Partners" class="footer-logo" style="height: 80px; width: auto;">
+        <p class="footer-tagline">Revenue operations systems that connect marketing, sales, and operations into one seamless engine.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="labs.html">Labs</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p style="color:#64748b; margin: 8px 0; font-size: 14px;">
+          Boxford Partners HQ<br>
+          345 California Street, Suite 600<br>
+          San Francisco, CA 94104
+        </p>
+        <p style="margin: 8px 0;">
+          <a href="mailto:hello@boxfordpartners.com">hello@boxfordpartners.com</a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Stay in touch</h4>
+        <form class="subscribe-form" onsubmit="return false;">
+          <input type="email" placeholder="Your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="wrap bottom-wrap">
+        <span>© <span id="year"></span> Boxford Partners. All rights reserved.</span>
+        <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+          <a href="privacy.html" style="color: rgba(255,255,255,0.7); font-size: 14px; text-decoration: none;">Privacy Policy</a>
+          <a href="terms.html" style="color: rgba(255,255,255,0.7); font-size: 14px; text-decoration: none;">Terms of Service</a>
+          <span class="credit">Built for growth-minded businesses.</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu from main site
+    function toggleMobileMenu() {
+      const nav = document.getElementById('mobileNav');
+      const btn = document.querySelector('.menu-btn');
+      nav.classList.toggle('show');
+      btn.classList.toggle('open');
+    }
+
+    function closeMobileMenu() {
+      const nav = document.getElementById('mobileNav');
+      const btn = document.querySelector('.menu-btn');
+      nav.classList.remove('show');
+      btn.classList.remove('open');
+    }
+
+    document.addEventListener('click', function(e) {
+      const nav = document.getElementById('mobileNav');
+      const btn = document.querySelector('.menu-btn');
+      
+      if (nav && btn && !nav.contains(e.target) && !btn.contains(e.target)) {
+        nav.classList.remove('show');
+        btn.classList.remove('open');
+      }
+    });
+
+    // Set year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // FAQ toggle
+    document.querySelectorAll('.faq-toggle').forEach(item => {
+      item.addEventListener('click', event => {
+        const details = item.closest('details');
+        const plusMinus = item.querySelector('.plus-minus');
+        
+        if (!details.open) {
+          plusMinus.textContent = '−';
+        } else {
+          plusMinus.textContent = '+';
+        }
+      })
+    })
+  </script>
+</body>
+</html>
