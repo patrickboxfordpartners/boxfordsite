@@ -451,106 +451,118 @@
             font-weight: 500;
         }
 
-        /* Intelligence Section */
-        .intelligence-section {
-            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-            border-radius: 24px;
-            padding: 48px;
-            margin-bottom: 48px;
-            border: 2px solid rgba(18,128,97,0.2);
-        }
+       /* Intelligence Section */
+.intelligence-section {
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 48px;
+    border: 2px solid rgba(18,128,97,0.2);
+}
 
-        .intelligence-section h2 {
-            font-size: 36px;
-            color: var(--navy);
-            margin-bottom: 24px;
-            font-weight: 800;
-        }
+.intelligence-section h2 {
+    font-size: 32px;
+    color: var(--navy);
+    margin-bottom: 16px;
+    font-weight: 800;
+    text-align: center;
+}
 
-        .intelligence-intro {
-            font-size: 19px;
-            line-height: 1.8;
-            color: var(--slate);
-            margin-bottom: 32px;
-            max-width: 900px;
-        }
+.intelligence-intro {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--slate);
+    margin-bottom: 32px;
+    max-width: 800px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-        .intelligence-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-            margin-bottom: 32px;
-        }
+.intelligence-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-bottom: 32px;
+}
 
-        .intelligence-card {
-            background: white;
-            padding: 32px;
-            border-radius: 16px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-            border-left: 4px solid var(--emerald);
-        }
+.intelligence-card {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-left: 4px solid var(--emerald);
+}
 
-        .intelligence-card h4 {
-            font-size: 20px;
-            color: var(--navy);
-            margin-bottom: 16px;
-            font-weight: 700;
-        }
+.intelligence-card h4 {
+    font-size: 18px;
+    color: var(--navy);
+    margin-bottom: 12px;
+    font-weight: 700;
+}
 
-        .intelligence-card p {
-            color: var(--slate);
-            line-height: 1.7;
-            font-size: 15px;
-        }
+.intelligence-card p {
+    color: var(--slate);
+    line-height: 1.6;
+    font-size: 15px;
+    margin: 0;
+}
 
-        .intelligence-disclaimer {
-            background: white;
-            border-left: 4px solid #f97316;
-            padding: 24px;
-            border-radius: 12px;
-            margin-top: 24px;
-        }
+.intelligence-disclaimer {
+    background: white;
+    border: 2px solid #ef4444;
+    border-left: 6px solid #ef4444;
+    padding: 24px 32px;
+    border-radius: 12px;
+    margin: 32px 0 24px;
+}
 
-        .intelligence-disclaimer h4 {
-            color: #9a3412;
-            margin-bottom: 12px;
-            font-size: 18px;
-            font-weight: 700;
-        }
+.intelligence-disclaimer h4 {
+    color: #ef4444;
+    margin-bottom: 16px;
+    font-size: 18px;
+    font-weight: 700;
+}
 
-        .intelligence-disclaimer ul {
-            list-style: none;
-            padding: 0;
-        }
+.intelligence-disclaimer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 8px;
+}
 
-        .intelligence-disclaimer li {
-            padding: 6px 0;
-            padding-left: 28px;
-            position: relative;
-            color: var(--slate);
-            font-size: 15px;
-        }
+.intelligence-disclaimer li {
+    padding-left: 28px;
+    position: relative;
+    color: var(--slate);
+    font-size: 15px;
+    line-height: 1.5;
+}
 
-        .intelligence-disclaimer li:before {
-            content: "×";
-            position: absolute;
-            left: 0;
-            color: #f97316;
-            font-weight: bold;
-            font-size: 20px;
-        }
+.intelligence-disclaimer li:before {
+    content: "✗";
+    position: absolute;
+    left: 0;
+    color: #ef4444;
+    font-weight: bold;
+    font-size: 18px;
+}
 
-        .intelligence-footer {
-            margin-top: 24px;
-            padding-top: 24px;
-            border-top: 2px solid rgba(18,128,97,0.2);
-            font-size: 17px;
-            line-height: 1.8;
-            color: var(--slate);
-        }
+.intelligence-footer {
+    margin-top: 0;
+    padding: 20px 24px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 8px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--slate);
+    text-align: center;
+}
 
-        .intelligence-footer strong {
-            color: var(--navy);
+.intelligence-footer strong {
+    color: var(--navy);
+}
         }
 
         /* Pricing Cards */
