@@ -509,12 +509,11 @@
 }
 
 .intelligence-disclaimer {
-    background: white;
-    border: 2px solid #ef4444;
-    border-left: 6px solid #ef4444;
-    padding: 20px 28px;
-    border-radius: 12px;
+    text-align: center;
     margin: 24px 0;
+    padding: 0;
+    background: none;
+    border: none;
 }
 
 .intelligence-disclaimer h4 {
@@ -528,23 +527,31 @@
     list-style: none;
     padding: 0;
     margin: 0;
+    display: inline;
 }
 
 .intelligence-disclaimer li {
-    padding: 4px 0 4px 28px;
-    position: relative;
+    display: inline;
     color: var(--slate);
     font-size: 15px;
-    line-height: 1.5;
+    margin: 0 4px;
 }
 
 .intelligence-disclaimer li:before {
-    content: "✗";
-    position: absolute;
-    left: 0;
+    content: "✗ ";
     color: #ef4444;
     font-weight: bold;
-    font-size: 18px;
+}
+
+.intelligence-disclaimer li:after {
+    content: " • ";
+    color: var(--muted);
+    margin: 0 4px;
+}
+
+.intelligence-disclaimer li:last-child:after {
+    content: "";
+}
 }
 
 .intelligence-footer {
