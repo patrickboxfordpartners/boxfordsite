@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms of Service - Boxford Partners</title>
-    <meta name="description" content="Terms of Service for Boxford Partners. Terms and conditions for using our services.">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <!-- Intercom Messenger -->
 <script>
   window.intercomSettings = {
@@ -17,268 +18,958 @@
 </script>
     <style>
         :root {
-            --navy: #0A1B33;
-            --azure: #1E5BA8;
-            --emerald: #165A42;
-            --ink: #0f172a;
-            --muted: #64748b;
-            --line: #e2e8f0;
-            --bg: #fff;
-            --bg-soft: #f8fafc;
+            --navy: #0B1E36;
+            --azure: #1C5AA1;
+            --emerald: #128061;
+            --ink: #1E293B;
+            --slate: #334155;
+            --muted: #64748B;
+            --soft: #F2F6FB;
+            --paper: #F7FAFC;
+            --line: #E6ECF3;
+            --gradient-primary: linear-gradient(135deg, #1E5BA8 0%, #0A1B33 100%);
         }
-        
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-        
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-            color: var(--ink);
-            background: var(--bg);
-            line-height: 1.6;
+            font-family: -apple-system, BlinkMacSystemFont, Inter, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: #1f2937;
+            background: var(--paper);
+            overflow-x: hidden;
         }
-        
-        .wrap {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
+
+        img {
+            max-width: 100%;
+            display: block;
         }
-        
-        header {
-            background: white;
-            border-bottom: 1px solid var(--line);
-            padding: 20px 0;
-        }
-        
-        .logo-link {
-            display: inline-block;
-        }
-        
-        .logo-main {
-            height: 50px;
-            width: auto;
-        }
-        
-        main {
-            padding: 60px 0;
-        }
-        
-        h1 {
-            font-size: 36px;
-            color: var(--navy);
-            margin-bottom: 8px;
-        }
-        
-        .last-updated {
-            color: var(--muted);
-            font-size: 14px;
-            margin-bottom: 32px;
-        }
-        
-        h2 {
-            font-size: 24px;
-            color: var(--navy);
-            margin-top: 40px;
-            margin-bottom: 16px;
-        }
-        
-        p {
-            margin-bottom: 16px;
-            color: var(--muted);
-        }
-        
-        ul {
-            margin: 16px 0 16px 24px;
-            color: var(--muted);
-        }
-        
-        li {
-            margin: 8px 0;
-        }
-        
+
         a {
             color: var(--azure);
             text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .wrap {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(230, 236, 243, 1);
+            padding: 16px 0;
+        }
+
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            padding: 14px 0;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            z-index: 1002;
+        }
+
+        .logo-main {
+            height: 70px;
+            width: auto;
+            display: block;
+        }
+
+        /* Desktop Navigation */
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            color: #374151;
+            font-weight: 600;
+            padding: 8px 12px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--azure);
+        }
+
+        .nav-cta {
+            background: var(--emerald) !important;
+            color: white !important;
+            border-radius: 8px;
+            padding: 10px 18px !important;
+            transition: all 0.3s ease;
         }
         
-        a:hover {
+        .nav-cta:hover {
+            background: #1a7556 !important;
+            color: white !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(22,90,66,0.3);
+        }
+
+        /* Hamburger Button */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1002;
+        }
+
+        .menu-toggle span {
+            width: 30px;
+            height: 3px;
+            background: var(--navy);
+            border-radius: 10px;
+            transition: all 0.3s linear;
+            position: relative;
+            transform-origin: 1px;
+        }
+
+        .menu-toggle.open span:first-child {
+            transform: rotate(45deg);
+        }
+
+        .menu-toggle.open span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+
+        .menu-toggle.open span:nth-child(3) {
+            transform: rotate(-45deg);
+        }
+
+        /* Mobile Menu Overlay */
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                right: -100%;
+                top: 0;
+                flex-direction: column;
+                background-color: white;
+                width: 70%;
+                max-width: 300px;
+                height: 100vh;
+                padding: 100px 30px 30px;
+                gap: 0;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                transition: right 0.3s ease-in-out;
+                z-index: 1001;
+                align-items: flex-start;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                width: 100%;
+                padding: 15px 0;
+                font-size: 18px;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .mobile-menu-overlay {
+                display: block;
+            }
+        }
+
+        /* Hero */
+        .hero {
+            background: var(--gradient-primary);
+            color: #fff;
+            padding: 100px 0 80px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 5vw, 48px);
+            line-height: 1.1;
+            margin: 0 0 16px;
+            font-weight: 900;
+        }
+
+        .hero p {
+            font-size: clamp(16px, 2vw, 18px);
+            color: #e0ecff;
+            margin: 0 auto;
+            line-height: 1.6;
+            max-width: 700px;
+        }
+
+        .effective-date {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-top: 16px;
+            color: #e0ecff;
+        }
+
+        /* Terms Content */
+        .terms-content {
+            background: #fff;
+            max-width: 900px;
+            margin: -40px auto 0;
+            position: relative;
+            z-index: 2;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            padding: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .terms-content {
+                padding: 40px 24px;
+                margin: -20px 24px 0;
+            }
+        }
+
+        .terms-content h2 {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--navy);
+            margin: 48px 0 20px 0;
+            padding-top: 24px;
+            border-top: 2px solid var(--line);
+        }
+
+        .terms-content h2:first-child {
+            margin-top: 0;
+            padding-top: 0;
+            border-top: none;
+        }
+
+        .terms-content h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--navy);
+            margin: 32px 0 16px 0;
+        }
+
+        .terms-content h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--slate);
+            margin: 24px 0 12px 0;
+        }
+
+        .terms-content p {
+            color: var(--slate);
+            line-height: 1.8;
+            margin-bottom: 16px;
+            font-size: 16px;
+        }
+
+        .terms-content ul {
+            margin: 16px 0 16px 24px;
+            color: var(--slate);
+            line-height: 1.8;
+        }
+
+        .terms-content li {
+            margin-bottom: 8px;
+        }
+
+        .terms-content strong {
+            color: var(--navy);
+            font-weight: 700;
+        }
+
+        .highlight-box {
+            background: var(--soft);
+            border-left: 4px solid var(--azure);
+            padding: 20px 24px;
+            margin: 24px 0;
+            border-radius: 8px;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+        }
+
+        .warning-box {
+            background: #fff9e6;
+            border-left: 4px solid #f59e0b;
+            padding: 20px 24px;
+            margin: 24px 0;
+            border-radius: 8px;
+        }
+
+        .contact-box {
+            background: var(--gradient-primary);
+            color: #fff;
+            padding: 32px;
+            border-radius: 16px;
+            margin: 48px 0 0;
+            text-align: center;
+        }
+
+        .contact-box h3 {
+            color: #fff;
+            margin: 0 0 16px;
+            font-size: 24px;
+        }
+
+        .contact-box p {
+            color: #e0ecff;
+            margin-bottom: 8px;
+        }
+
+        .contact-box a {
+            color: #fff;
             text-decoration: underline;
         }
-        
-        footer {
-            background: var(--navy);
-            color: white;
-            padding: 40px 0 20px;
-            margin-top: 60px;
+
+        .section-wrapper {
+            padding: 60px 0;
         }
-        
-        .footer-text {
-            text-align: center;
+
+        /* Footer */
+        .modern-footer {
+            background: linear-gradient(135deg, var(--navy) 0%, #0d2847 100%);
+            color: white;
+            padding: 60px 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        .footer-col h4 {
+            margin: 0 0 16px;
+            font-weight: 700;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        .footer-col a {
+            color: rgba(255,255,255,0.7);
+            display: block;
+            margin: 8px 0;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.25s ease;
+        }
+
+        .footer-col a:hover {
+            color: white;
+        }
+
+        .footer-logo {
+            height: 60px;
+            width: auto;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .footer-logo {
+                margin: 0 auto 16px;
+            }
+        }
+
+        .footer-tagline {
+            color: var(--muted);
             font-size: 14px;
-            opacity: 0.8;
+            line-height: 1.6;
+            max-width: 280px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-tagline {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+        }
+
+        .footer-bottom {
+            padding: 24px 0;
+        }
+
+        .bottom-wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: var(--muted);
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .bottom-wrap {
+                justify-content: center;
+                text-align: center;
+            }
+        }
+
+        .credit {
+            font-size: 14px;
+            opacity: 0.7;
         }
     </style>
 </head>
 <body>
 
+<div class="mobile-menu-overlay"></div>
+
 <header>
-    <div class="wrap">
-        <a href="index.html" class="logo-link">
-            <img src="Screen_Shot_2025-10-07_at_3.15.56_PM-removebg-preview.png" alt="Boxford Partners" class="logo-main">
+    <div class="wrap nav">
+        <a href="index.html" class="brand">
+            <img src="Screen_Shot_2025-10-07_at_3.15.56_PM-removebg-preview.png"
+                 alt="Boxford Partners logo"
+                 class="logo-main">
         </a>
+
+        <button class="menu-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="nav-links" id="mobileNav">
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="about.html">About</a>
+            <a href="faq.html">FAQ</a>
+            <a href="auditlanding.html" class="nav-cta">Start AI Readiness Audit</a>
+        </nav>
     </div>
 </header>
 
-<main>
+<section class="hero">
     <div class="wrap">
         <h1>Terms of Service</h1>
-        <p class="last-updated">Last Updated: October 20, 2025</p>
-        
-        <p>These Terms of Service ("Terms") govern your access to and use of the Boxford Partners website and services. By accessing or using our services, you agree to be bound by these Terms.</p>
-        
-        <h2>1. Services</h2>
-        
-        <p>Boxford Partners provides AI-powered revenue operations consulting and implementation services, including but not limited to:</p>
-        <ul>
-            <li>Business process automation</li>
-            <li>CRM integration and optimization</li>
-            <li>Custom software development</li>
-            <li>AI readiness audits and assessments</li>
-        </ul>
-        
-        <p>Specific services, deliverables, and pricing will be outlined in separate Service Agreements or Statements of Work.</p>
-        
-        <h2>2. Use of Website</h2>
-        
-        <p>You agree to use our website only for lawful purposes and in accordance with these Terms. You agree not to:</p>
-        <ul>
-            <li>Violate any applicable laws or regulations</li>
-            <li>Infringe on intellectual property rights</li>
-            <li>Transmit harmful code, viruses, or malware</li>
-            <li>Attempt to gain unauthorized access to our systems</li>
-            <li>Use automated systems to scrape or extract data</li>
-            <li>Impersonate any person or entity</li>
-        </ul>
-        
-        <h2>3. Intellectual Property</h2>
-        
-        <p>All content on this website, including text, graphics, logos, and software, is the property of Boxford Partners or its licensors and is protected by copyright, trademark, and other intellectual property laws.</p>
-        
-        <p>Unless otherwise stated in a Service Agreement, work product and deliverables created specifically for a client will be transferred to the client upon full payment, subject to our right to use anonymized versions for marketing purposes.</p>
-        
-        <h2>4. Client Responsibilities</h2>
-        
-        <p>When engaging our services, clients agree to:</p>
-        <ul>
-            <li>Provide accurate and complete information</li>
-            <li>Grant necessary access to systems and data</li>
-            <li>Respond to requests in a timely manner</li>
-            <li>Comply with all applicable laws and regulations</li>
-            <li>Make timely payments as agreed</li>
-        </ul>
-        
-        <h2>5. Payment Terms</h2>
-        
-        <p>Payment terms will be specified in individual Service Agreements. Generally:</p>
-        <ul>
-            <li>Invoices are due within 30 days unless otherwise specified</li>
-            <li>Late payments may incur interest charges</li>
-            <li>Services may be suspended for non-payment</li>
-            <li>Refunds are handled on a case-by-case basis</li>
-        </ul>
-        
-        <h2>6. Warranties and Disclaimers</h2>
-        
-        <p>We strive to provide high-quality services. However:</p>
-        <ul>
-            <li>Services are provided "as is" without warranties of any kind</li>
-            <li>We do not guarantee specific business outcomes or results</li>
-            <li>We are not responsible for third-party systems or integrations beyond our control</li>
-            <li>The website may contain technical inaccuracies or errors</li>
-        </ul>
-        
-        <h2>7. Limitation of Liability</h2>
-        
-        <p>To the maximum extent permitted by law:</p>
-        <ul>
-            <li>Our total liability shall not exceed the fees paid for the specific service</li>
-            <li>We are not liable for indirect, incidental, or consequential damages</li>
-            <li>We are not liable for loss of profits, revenue, data, or business opportunities</li>
-            <li>Some jurisdictions do not allow limitations of liability, so these may not apply to you</li>
-        </ul>
-        
-        <h2>8. Confidentiality</h2>
-        
-        <p>Both parties agree to:</p>
-        <ul>
-            <li>Keep confidential information private</li>
-            <li>Use confidential information only for the intended purpose</li>
-            <li>Return or destroy confidential information upon request</li>
-        </ul>
-        
-        <p>This does not apply to information that is publicly available or independently developed.</p>
-        
-        <h2>9. Termination</h2>
-        
-        <p>Either party may terminate a Service Agreement:</p>
-        <ul>
-            <li>For convenience with 30 days written notice</li>
-            <li>Immediately for material breach</li>
-            <li>Immediately if the other party becomes insolvent</li>
-        </ul>
-        
-        <p>Upon termination, you remain liable for all fees incurred prior to termination.</p>
-        
-        <h2>10. Indemnification</h2>
-        
-        <p>You agree to indemnify and hold harmless Boxford Partners from claims, damages, and expenses arising from:</p>
-        <ul>
-            <li>Your use of our services</li>
-            <li>Your violation of these Terms</li>
-            <li>Your violation of any rights of another party</li>
-            <li>Your violation of applicable laws</li>
-        </ul>
-        
-        <h2>11. Governing Law</h2>
-        
-        <p>These Terms are governed by the laws of the State of California, without regard to conflict of law principles. Any disputes shall be resolved in the courts of San Francisco County, California.</p>
-        
-        <h2>12. Changes to Terms</h2>
-        
-        <p>We reserve the right to modify these Terms at any time. Changes will be effective immediately upon posting. Your continued use of our services constitutes acceptance of the modified Terms.</p>
-        
-        <h2>13. Severability</h2>
-        
-        <p>If any provision of these Terms is found to be unenforceable, the remaining provisions will remain in full force and effect.</p>
-        
-        <h2>14. Entire Agreement</h2>
-        
-        <p>These Terms, together with any Service Agreements and our Privacy Policy, constitute the entire agreement between you and Boxford Partners.</p>
-        
-        <h2>15. Contact Information</h2>
-        
-        <p>For questions about these Terms, please contact us:</p>
-        
-        <p>
-            <strong>Boxford Partners</strong><br>
-            345 California Street, Suite 600<br>
-            San Francisco, CA 94104<br>
-            Email: <a href="mailto:hello@boxfordpartners.com">hello@boxfordpartners.com</a><br>
-            Phone: (415) 683-1185
-        </p>
+        <p>Clear, comprehensive terms for our consulting services and software products.</p>
+        <span class="effective-date">Effective Date: November 15, 2025</span>
     </div>
-</main>
+</section>
 
-<footer>
+<div class="section-wrapper">
     <div class="wrap">
-        <p class="footer-text">© <span id="year"></span> Boxford Partners. All rights reserved. | <a href="privacy.html" style="color: rgba(255,255,255,0.8);">Privacy Policy</a> | <a href="terms.html" style="color: rgba(255,255,255,0.8);">Terms of Service</a></p>
+        <div class="terms-content">
+            
+            <h2>1. Agreement to Terms</h2>
+            <p>These Terms of Service ("Terms") govern your access to and use of Boxford Partners LLC's ("Boxford Partners," "we," "us," or "our") consulting services, software products, and related offerings. By engaging our services or using our products, you ("Client," "you," or "your") agree to be bound by these Terms.</p>
+            <p>If you are entering into these Terms on behalf of a company or other legal entity, you represent that you have the authority to bind such entity to these Terms.</p>
+
+            <h2>2. Services Overview</h2>
+            
+            <h3>2.1 Consulting Services</h3>
+            <p>Boxford Partners provides revenue operations consulting, including but not limited to:</p>
+            <ul>
+                <li>Revenue operations audits and assessments</li>
+                <li>CRM implementation and customization (Monday.com, HubSpot, Salesforce, and others)</li>
+                <li>Marketing and sales automation design and implementation</li>
+                <li>Business process optimization</li>
+                <li>Integration architecture and custom development</li>
+                <li>Ongoing technical support and maintenance</li>
+            </ul>
+
+            <h3>2.2 Software Products</h3>
+            <p>Boxford Partners develops and licenses proprietary software tools under the Boxford Labs brand, including but not limited to:</p>
+            <ul>
+                <li>Interview Authenticity Intelligence (AI-powered interview analysis)</li>
+                <li>Review management and automation systems</li>
+                <li>Custom integration tools and APIs</li>
+                <li>Other business automation software</li>
+            </ul>
+
+            <h3>2.3 Service Delivery Model</h3>
+            <p>Our typical engagement follows a three-phase approach:</p>
+            <ul>
+                <li><strong>Discovery Phase:</strong> Assessment of current systems and requirements</li>
+                <li><strong>Design Phase:</strong> Custom solution architecture and planning</li>
+                <li><strong>Implementation Phase:</strong> Build, deploy, and optimize solutions</li>
+            </ul>
+            <p>Specific deliverables, timelines, and pricing will be outlined in individual Statements of Work.</p>
+
+            <h2>3. Engagement Terms</h2>
+            
+            <h3>3.1 Statements of Work</h3>
+            <p>Each consulting engagement or software implementation will be governed by a Statement of Work ("SOW") that specifies:</p>
+            <ul>
+                <li>Scope of work and deliverables</li>
+                <li>Timeline and milestones</li>
+                <li>Pricing and payment terms</li>
+                <li>Specific responsibilities of each party</li>
+            </ul>
+            <p>SOWs are incorporated into and governed by these Terms. In the event of conflict between these Terms and an SOW, the SOW shall prevail for that specific engagement.</p>
+
+            <h3>3.2 Project Changes</h3>
+            <p>Changes to the scope of work require written approval from both parties. Additional work outside the original SOW will be billed separately at our then-current rates or as mutually agreed.</p>
+
+            <h3>3.3 Client Responsibilities</h3>
+            <p>You agree to:</p>
+            <ul>
+                <li>Provide timely access to necessary systems, data, and personnel</li>
+                <li>Respond to requests for information within agreed timeframes</li>
+                <li>Designate a primary point of contact with decision-making authority</li>
+                <li>Provide accurate and complete information</li>
+                <li>Review and approve deliverables in a timely manner</li>
+            </ul>
+            <div class="warning-box">
+                <p><strong>Important:</strong> Delays caused by failure to meet these responsibilities may result in timeline extensions and additional fees.</p>
+            </div>
+
+            <h2>4. Fees and Payment</h2>
+            
+            <h3>4.1 Pricing Structure</h3>
+            <ul>
+                <li><strong>Revenue Leak Checkpoint Calls:</strong> Complimentary initial assessment</li>
+                <li><strong>Comprehensive Audits:</strong> Starting at $3,500 (credited toward implementation if you proceed)</li>
+                <li><strong>Implementation Projects:</strong> $10,000-$30,000+ depending on scope</li>
+                <li><strong>Ongoing Retainers:</strong> Custom pricing based on support needs</li>
+                <li><strong>Software Licenses:</strong> As specified in individual license agreements</li>
+            </ul>
+
+            <h3>4.2 Payment Terms</h3>
+            <p>Unless otherwise specified in an SOW:</p>
+            <ul>
+                <li>Audit fees are due upon completion of the audit</li>
+                <li>Implementation projects require a 50% deposit before work begins</li>
+                <li>Remaining balance is due upon completion or according to milestone-based payment schedule</li>
+                <li>Monthly retainers are billed in advance on the first day of each month</li>
+                <li>Software licenses are billed according to the subscription terms</li>
+            </ul>
+
+            <h3>4.3 Late Payment</h3>
+            <p>Invoices not paid within 30 days of the invoice date will accrue interest at 1.5% per month (18% annually) or the maximum rate permitted by law, whichever is lower. We reserve the right to suspend services for accounts more than 30 days past due.</p>
+
+            <h3>4.4 Expenses</h3>
+            <p>Unless otherwise specified, fees do not include travel expenses, third-party software licenses, or other out-of-pocket costs. Such expenses will be billed at cost plus 15% administrative fee, with advance approval for expenses exceeding $500.</p>
+
+            <h2>5. Intellectual Property Rights</h2>
+            
+            <h3>5.1 Pre-Existing IP</h3>
+            <p>Each party retains all rights to intellectual property it owned prior to the engagement. This includes:</p>
+            <ul>
+                <li>Boxford Partners' proprietary tools, methodologies, frameworks, and software</li>
+                <li>Client's pre-existing business processes, data, and materials</li>
+            </ul>
+
+            <h3>5.2 Work Product Ownership</h3>
+            <p><strong>For Consulting Services:</strong></p>
+            <ul>
+                <li>Custom configurations, workflows, and implementations created specifically for you become your property upon full payment</li>
+                <li>We retain the right to reuse general methodologies, techniques, and non-client-specific knowledge</li>
+            </ul>
+            <p><strong>For Software Products:</strong></p>
+            <ul>
+                <li>You receive a license to use our software as specified in Section 6</li>
+                <li>We retain all ownership rights to the underlying software, code, and algorithms</li>
+                <li>Any customizations remain our property unless explicitly transferred in writing</li>
+            </ul>
+
+            <h3>5.3 Use of Client Materials</h3>
+            <p>You grant us a limited license to use your trademarks, logos, and materials solely for the purpose of delivering services. We may display your company name and logo as a client reference unless you opt out in writing.</p>
+
+            <h3>5.4 Portfolio and Case Studies</h3>
+            <p>We may create case studies or portfolio pieces describing our work for you, subject to:</p>
+            <ul>
+                <li>Your prior written approval of any materials before publication</li>
+                <li>Removal of any confidential or sensitive information</li>
+                <li>Your right to request removal at any time</li>
+            </ul>
+
+            <h2>6. Software License Terms</h2>
+            
+            <h3>6.1 License Grant</h3>
+            <p>Subject to your compliance with these Terms and payment of applicable fees, we grant you a non-exclusive, non-transferable, limited license to access and use our software products for your internal business purposes only.</p>
+
+            <h3>6.2 License Restrictions</h3>
+            <p>You shall not:</p>
+            <ul>
+                <li>Reverse engineer, decompile, or disassemble the software</li>
+                <li>Remove or modify any proprietary notices</li>
+                <li>Rent, lease, sell, or sublicense the software</li>
+                <li>Use the software to develop competing products</li>
+                <li>Exceed authorized usage limits or user counts</li>
+                <li>Use the software for illegal purposes or in violation of applicable laws</li>
+            </ul>
+
+            <h3>6.3 Software Updates</h3>
+            <p>We may update, modify, or discontinue features of our software at any time. We will provide reasonable notice of material changes that negatively impact functionality.</p>
+
+            <h3>6.4 Data and API Access</h3>
+            <p>For software products that integrate with third-party platforms:</p>
+            <ul>
+                <li>You are responsible for maintaining valid credentials and API access</li>
+                <li>We are not liable for disruptions caused by third-party service changes</li>
+                <li>You grant us necessary permissions to access your data solely for providing the service</li>
+            </ul>
+
+            <h3>6.5 Subscription Terms</h3>
+            <p>Software subscriptions automatically renew unless cancelled with 30 days' notice before the renewal date. Cancellation becomes effective at the end of the current billing period. No refunds for partial months.</p>
+
+            <h2>7. Confidentiality</h2>
+            
+            <h3>7.1 Definition</h3>
+            <p>"Confidential Information" includes all non-public information disclosed by either party, including business plans, technical data, customer information, pricing, and proprietary methodologies.</p>
+
+            <h3>7.2 Obligations</h3>
+            <p>Each party agrees to:</p>
+            <ul>
+                <li>Protect Confidential Information using reasonable care (at least the same care used for its own confidential information)</li>
+                <li>Use Confidential Information only for the purposes of the engagement</li>
+                <li>Limit disclosure to employees and contractors with a need to know</li>
+                <li>Not disclose Confidential Information without prior written consent</li>
+            </ul>
+
+            <h3>7.3 Exceptions</h3>
+            <p>Confidential Information does not include information that:</p>
+            <ul>
+                <li>Is or becomes publicly available through no breach of these Terms</li>
+                <li>Was rightfully known prior to disclosure</li>
+                <li>Is independently developed without use of Confidential Information</li>
+                <li>Is required to be disclosed by law (with prompt notice to the disclosing party)</li>
+            </ul>
+
+            <h3>7.4 Data Security</h3>
+            <p>We implement reasonable administrative, technical, and physical safeguards to protect your data. However, no security system is impenetrable, and we cannot guarantee absolute security.</p>
+
+            <h2>8. Warranties and Disclaimers</h2>
+            
+            <h3>8.1 Our Warranties</h3>
+            <p>We warrant that:</p>
+            <ul>
+                <li>Services will be performed in a professional and workmanlike manner</li>
+                <li>We have the right to provide the services and software</li>
+                <li>Services will materially conform to specifications in the applicable SOW</li>
+            </ul>
+            <p>Your sole remedy for breach of these warranties is re-performance of the deficient services at no additional cost.</p>
+
+            <h3>8.2 DISCLAIMER</h3>
+            <div class="warning-box">
+                <p><strong>EXCEPT AS EXPRESSLY PROVIDED IN SECTION 8.1, ALL SERVICES AND SOFTWARE ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.</strong></p>
+                <p><strong>WE DO NOT WARRANT THAT:</strong></p>
+                <ul>
+                    <li>Services or software will be uninterrupted, error-free, or secure</li>
+                    <li>Results obtained will meet your requirements</li>
+                    <li>Defects will be corrected</li>
+                    <li>Third-party integrations will remain functional</li>
+                </ul>
+            </div>
+
+            <h3>8.3 Third-Party Services</h3>
+            <p>We are not responsible for the performance, availability, or changes to third-party platforms (e.g., Monday.com, HubSpot, Salesforce). We will make reasonable efforts to maintain compatibility but cannot guarantee functionality if third parties modify their systems.</p>
+
+            <h2>9. Limitation of Liability</h2>
+            
+            <h3>9.1 Limitation of Direct Damages</h3>
+            <div class="warning-box">
+                <p><strong>TO THE MAXIMUM EXTENT PERMITTED BY LAW, OUR TOTAL LIABILITY ARISING OUT OF OR RELATED TO THESE TERMS SHALL NOT EXCEED THE AMOUNTS PAID BY YOU TO US IN THE TWELVE (12) MONTHS PRECEDING THE EVENT GIVING RISE TO LIABILITY.</strong></p>
+            </div>
+
+            <h3>9.2 Exclusion of Consequential Damages</h3>
+            <div class="warning-box">
+                <p><strong>IN NO EVENT SHALL WE BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO:</strong></p>
+                <ul>
+                    <li>Loss of profits, revenue, or business opportunities</li>
+                    <li>Loss of data or cost of procurement of substitute services</li>
+                    <li>Business interruption</li>
+                    <li>Loss of goodwill or reputation</li>
+                </ul>
+                <p><strong>This limitation applies regardless of the legal theory (contract, tort, negligence, strict liability, or otherwise) and even if we have been advised of the possibility of such damages.</strong></p>
+            </div>
+
+            <h3>9.3 Exceptions</h3>
+            <p>These limitations do not apply to:</p>
+            <ul>
+                <li>Your breach of intellectual property rights</li>
+                <li>Your breach of confidentiality obligations</li>
+                <li>Your violation of applicable laws</li>
+                <li>Liability that cannot be excluded under applicable law</li>
+            </ul>
+
+            <h2>10. Indemnification</h2>
+            
+            <h3>10.1 Your Indemnification</h3>
+            <p>You agree to indemnify, defend, and hold harmless Boxford Partners, its affiliates, and their respective officers, directors, employees, and agents from any claims, damages, losses, liabilities, and expenses (including reasonable attorneys' fees) arising from:</p>
+            <ul>
+                <li>Your use of our services or software in violation of these Terms</li>
+                <li>Your violation of any law or regulation</li>
+                <li>Infringement of third-party rights by your content or materials</li>
+                <li>Negligence or willful misconduct</li>
+            </ul>
+
+            <h3>10.2 Our Indemnification</h3>
+            <p>We agree to indemnify you from third-party claims that our services or software infringe a valid U.S. patent, copyright, or trademark, provided you:</p>
+            <ul>
+                <li>Promptly notify us in writing of the claim</li>
+                <li>Grant us sole control of the defense and settlement</li>
+                <li>Provide reasonable cooperation in the defense</li>
+            </ul>
+            <p>Our obligations do not apply to infringement arising from:</p>
+            <ul>
+                <li>Modification of our services or software</li>
+                <li>Use in combination with third-party products</li>
+                <li>Use after we notified you to stop due to infringement concerns</li>
+                <li>Your specifications or requirements</li>
+            </ul>
+
+            <h2>11. Term and Termination</h2>
+            
+            <h3>11.1 Term</h3>
+            <p>These Terms begin when you first engage our services or use our software and continue until terminated as provided herein.</p>
+
+            <h3>11.2 Termination for Convenience</h3>
+            <p>Either party may terminate an ongoing engagement or software subscription with 30 days' written notice. You remain responsible for payment of all work performed through the termination date.</p>
+
+            <h3>11.3 Termination for Cause</h3>
+            <p>Either party may terminate immediately if:</p>
+            <ul>
+                <li>The other party materially breaches these Terms and fails to cure within 15 days of written notice</li>
+                <li>The other party becomes insolvent, files for bankruptcy, or ceases business operations</li>
+            </ul>
+
+            <h3>11.4 Effect of Termination</h3>
+            <p>Upon termination:</p>
+            <ul>
+                <li>You must pay all outstanding fees for services rendered and software used</li>
+                <li>We will provide you with all deliverables completed as of the termination date</li>
+                <li>Your license to use our software terminates immediately (except for perpetual licenses)</li>
+                <li>We will return or destroy your Confidential Information upon request</li>
+                <li>Sections 5, 7, 8, 9, 10, and 12 survive termination</li>
+            </ul>
+
+            <h3>11.5 Transition Assistance</h3>
+            <p>Upon request and for additional fees, we will provide reasonable transition assistance for up to 30 days after termination to help you migrate to alternative solutions.</p>
+
+            <h2>12. General Provisions</h2>
+            
+            <h3>12.1 Entire Agreement</h3>
+            <p>These Terms, together with any SOWs and license agreements, constitute the entire agreement between the parties and supersede all prior understandings and agreements, whether written or oral.</p>
+
+            <h3>12.2 Amendments</h3>
+            <p>We may modify these Terms by providing 30 days' notice via email or by posting updated Terms on our website. Continued use of services after the effective date constitutes acceptance of the modified Terms. Material changes to SOWs require written agreement from both parties.</p>
+
+            <h3>12.3 Assignment</h3>
+            <p>You may not assign or transfer these Terms or any SOW without our prior written consent. We may assign these Terms to any affiliate or in connection with a merger, acquisition, or sale of assets with notice to you.</p>
+
+            <h3>12.4 Independent Contractors</h3>
+            <p>The parties are independent contractors. Nothing in these Terms creates a partnership, joint venture, agency, or employment relationship. Neither party has authority to bind the other.</p>
+
+            <h3>12.5 Force Majeure</h3>
+            <p>Neither party shall be liable for failure to perform due to circumstances beyond its reasonable control, including natural disasters, war, terrorism, labor disputes, government actions, or internet/telecommunications failures. Performance will be suspended during the force majeure event and extended by a reasonable period.</p>
+
+            <h3>12.6 Notices</h3>
+            <p>All notices must be in writing and sent to:</p>
+            <div class="highlight-box">
+                <p><strong>Boxford Partners:</strong><br>
+                Boxford Partners LLC<br>
+                345 California Street, Suite 600<br>
+                San Francisco, CA 94104<br>
+                Email: hello@boxfordpartners.com</p>
+                <p><strong>Client:</strong><br>
+                To the address provided in the applicable SOW or account registration.</p>
+            </div>
+            <p>Notices are deemed received upon delivery if sent via overnight courier, or three business days after mailing if sent via certified mail.</p>
+
+            <h3>12.7 Governing Law and Jurisdiction</h3>
+            <p>These Terms shall be governed by and construed in accordance with the laws of the State of California, without regard to its conflict of law provisions.</p>
+            <p>Any dispute arising from these Terms shall be resolved exclusively in the state or federal courts located in San Francisco County, California. Each party consents to the personal jurisdiction of such courts.</p>
+
+            <h3>12.8 Dispute Resolution</h3>
+            <p>Before filing any lawsuit, the parties agree to attempt good faith negotiations for at least 30 days. If negotiations fail, either party may pursue litigation as provided in Section 12.7.</p>
+
+            <h3>12.9 Waiver</h3>
+            <p>Failure to enforce any provision of these Terms does not constitute a waiver of that provision or any other provision. Any waiver must be in writing and signed by the waiving party.</p>
+
+            <h3>12.10 Severability</h3>
+            <p>If any provision of these Terms is found to be unenforceable or invalid, that provision shall be limited or eliminated to the minimum extent necessary, and the remaining provisions shall remain in full force and effect.</p>
+
+            <h3>12.11 Headings</h3>
+            <p>Section headings are for convenience only and do not affect interpretation of these Terms.</p>
+
+            <h3>12.12 Counterparts</h3>
+            <p>These Terms and any SOWs may be executed in counterparts, each of which shall be deemed an original and all of which together shall constitute one agreement. Electronic signatures shall have the same force and effect as original signatures.</p>
+
+            <h2>13. Compliance and Regulatory</h2>
+            
+            <h3>13.1 GDPR Compliance</h3>
+            <p>For clients subject to the General Data Protection Regulation (GDPR), we will execute a separate Data Processing Agreement addressing data protection requirements.</p>
+
+            <h3>13.2 Data Protection</h3>
+            <p>We comply with applicable data protection laws and maintain commercially reasonable security measures. You are responsible for ensuring your use of our services complies with laws applicable to you.</p>
+
+            <h3>13.3 Export Controls</h3>
+            <p>You may not use our services or software in violation of U.S. export laws and regulations. You represent that you are not located in, under control of, or a national or resident of any restricted country.</p>
+
+            <div class="contact-box">
+                <h3>14. Contact Information</h3>
+                <p>For questions about these Terms, please contact:</p>
+                <p><strong>Boxford Partners LLC</strong><br>
+                Email: <a href="mailto:hello@boxfordpartners.com">hello@boxfordpartners.com</a><br>
+                Website: <a href="https://boxfordpartners.com">boxfordpartners.com</a></p>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 48px; text-align: center;">
+                <p><strong>By engaging our services or using our software, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service.</strong></p>
+            </div>
+
+            <p style="text-align: center; color: var(--muted); margin-top: 24px; font-size: 14px;">Last Updated: November 15, 2025</p>
+
+        </div>
     </div>
+</div>
+
+<footer class="modern-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-col">
+      <img src="whitelogo.png" alt="Boxford Partners" class="footer-logo" style="height: 80px; width: auto;">
+      <p class="footer-tagline">Revenue operations systems that connect marketing, sales, and operations into one seamless engine.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="about.html">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="labs.html">Labs</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p style="color:#64748b; margin: 8px 0; font-size: 14px;">
+        Boxford Partners HQ<br>
+        345 California Street, Suite 600<br>
+        San Francisco, CA 94104
+      </p>
+      <p style="margin: 8px 0;">
+        <a href="mailto:hello@boxfordpartners.com">hello@boxfordpartners.com</a>
+      </p>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="wrap bottom-wrap">
+      <span>© <span id="year"></span> Boxford Partners. All rights reserved.</span>
+      <span class="credit">Built for growth-minded businesses.</span>
+    </div>
+  </div>
 </footer>
 
 <script>
-document.getElementById('year').textContent = new Date().getFullYear();
+document.addEventListener('DOMContentLoaded', function() {
+    // Year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Header scroll effect
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    // Mobile menu toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const overlay = document.querySelector('.mobile-menu-overlay');
+    const body = document.body;
+
+    function toggleMenu() {
+        menuToggle.classList.toggle('open');
+        navLinks.classList.toggle('active');
+        overlay.classList.toggle('active');
+        body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+    }
+
+    function closeMenu() {
+        menuToggle.classList.remove('open');
+        navLinks.classList.remove('active');
+        overlay.classList.remove('active');
+        body.style.overflow = '';
+    }
+
+    menuToggle.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', closeMenu);
+
+    // Close menu when clicking a link
+    navLinks.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', closeMenu);
+    });
+});
 </script>
 
 </body>
