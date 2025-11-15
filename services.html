@@ -1319,54 +1319,136 @@
 </section>
 
 <!-- How We Use Intelligence & Automation -->
-<section class="section">
-    <div class="wrap">
-        <div class="intelligence-section">
-            <h2>How We Use Intelligence & Automation</h2>
-            
-            <p class="intelligence-intro">
-                We're pragmatic about technology. We use modern tools—including machine learning and AI—where they genuinely outperform traditional automation. But we never use technology for its own sake.
-            </p>
-            
-            <div class="intelligence-grid">
-                <div class="intelligence-card">
-                    <h4>Predictive Lead Scoring</h4>
-                    <p>Machine learning models learn which leads are most likely to close based on your historical data, so your team focuses on the opportunities that matter.</p>
-                </div>
-                
-                <div class="intelligence-card">
-                    <h4>Optimal Timing</h4>
-                    <p>Algorithms determine the best times to send messages, schedule calls, and trigger follow-ups based on response patterns and conversion data.</p>
-                </div>
-                
-                <div class="intelligence-card">
-                    <h4>Pattern Detection</h4>
-                    <p>Systems flag anomalies in your pipeline, identify bottlenecks, and surface opportunities humans would miss in the noise.</p>
-                </div>
-                
-                <div class="intelligence-card">
-                    <h4>Smart Routing</h4>
-                    <p>Leads go to the right rep based on territory, workload, expertise, and current performance—balancing efficiency with fairness.</p>
-                </div>
-            </div>
-            
-            <div class="intelligence-disclaimer">
-                <h4>What We Don't Do</h4>
-                <ul>
-                    <li>Implement AI just to say we use AI</li>
-                    <li>Replace human judgment with algorithms</li>
-                    <li>Build fragile systems that require constant tuning</li>
-                    <li>Use buzzwords instead of delivering results</li>
-                </ul>
-            </div>
-            
-            <div class="intelligence-footer">
-                <strong>The real work</strong> is understanding your operations, designing the right workflows, and integrating your systems so everything works together. The intelligence layer makes it better—but the foundation has to be solid first.
-            </div>
-        </div>
-    </div>
-</section>
+/* Intelligence & Automation Section - Complete Redesign */
+.intelligence-section {
+    max-width: 1000px;
+    margin: 0 auto;
+}
 
+.intelligence-section h2 {
+    font-size: clamp(32px, 4vw, 42px);
+    font-weight: 900;
+    color: var(--navy);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.intelligence-intro {
+    font-size: 18px;
+    color: var(--slate);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 48px;
+    line-height: 1.7;
+}
+
+.intelligence-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    margin-bottom: 48px;
+}
+
+.intelligence-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 28px;
+    transition: all 0.3s ease;
+}
+
+.intelligence-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(30, 91, 168, 0.12);
+    border-color: var(--azure);
+}
+
+.intelligence-card h4 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--navy);
+    margin: 0 0 12px 0;
+}
+
+.intelligence-card p {
+    font-size: 15px;
+    color: var(--slate);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.intelligence-disclaimer {
+    background: #fff;
+    border: 2px solid #ef4444;
+    border-left: 6px solid #ef4444;
+    border-radius: 12px;
+    padding: 32px 40px;
+    margin: 48px 0;
+}
+
+.intelligence-disclaimer h4 {
+    color: #ef4444;
+    font-size: 20px;
+    font-weight: 800;
+    margin: 0 0 20px 0;
+}
+
+.intelligence-disclaimer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 12px;
+}
+
+.intelligence-disclaimer li {
+    padding-left: 32px;
+    position: relative;
+    color: var(--slate);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.intelligence-disclaimer li::before {
+    content: "✗";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #ef4444;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.intelligence-footer {
+    background: var(--soft);
+    border-radius: 12px;
+    padding: 24px 32px;
+    font-size: 16px;
+    color: var(--slate);
+    line-height: 1.7;
+    text-align: center;
+}
+
+.intelligence-footer strong {
+    color: var(--navy);
+    font-weight: 700;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .intelligence-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .intelligence-disclaimer {
+        padding: 24px;
+    }
+    
+    .intelligence-footer {
+        padding: 20px 24px;
+        font-size: 15px;
+    }
+}
 <!-- Case Studies -->
 <section class="section section-alt">
     <div class="wrap">
