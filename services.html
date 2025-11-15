@@ -5,6 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Services & Solutions - Boxford Partners</title>
     <meta name="description" content="Detailed revenue operations services: CRM integration, sales automation, marketing systems, and operational infrastructure for growing businesses.">
+    
+    <!-- Intercom Messenger -->
+    <script>
+      window.intercomSettings = {
+        api_base: "https://api-iam.intercom.io",
+        app_id: "tjs0q8cj"
+      };
+    </script>
+    <script>
+    (function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/tjs0q8cj';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+    </script>
+    
     <style>
         :root {
             --navy: #0B1E36;
@@ -443,8 +455,8 @@
         .intelligence-section {
             background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
             border-radius: 24px;
-            padding: 56px 48px;
-            margin-bottom: 80px;
+            padding: 48px;
+            margin-bottom: 48px;
             border: 2px solid rgba(18,128,97,0.2);
         }
 
@@ -459,15 +471,15 @@
             font-size: 19px;
             line-height: 1.8;
             color: var(--slate);
-            margin-bottom: 40px;
+            margin-bottom: 32px;
             max-width: 900px;
         }
 
         .intelligence-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 32px;
-            margin-bottom: 40px;
+            gap: 24px;
+            margin-bottom: 32px;
         }
 
         .intelligence-card {
@@ -494,14 +506,14 @@
         .intelligence-disclaimer {
             background: white;
             border-left: 4px solid #f97316;
-            padding: 28px;
+            padding: 24px;
             border-radius: 12px;
-            margin-top: 32px;
+            margin-top: 24px;
         }
 
         .intelligence-disclaimer h4 {
             color: #9a3412;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             font-size: 18px;
             font-weight: 700;
         }
@@ -512,7 +524,7 @@
         }
 
         .intelligence-disclaimer li {
-            padding: 8px 0;
+            padding: 6px 0;
             padding-left: 28px;
             position: relative;
             color: var(--slate);
@@ -529,8 +541,8 @@
         }
 
         .intelligence-footer {
-            margin-top: 32px;
-            padding-top: 32px;
+            margin-top: 24px;
+            padding-top: 24px;
             border-top: 2px solid rgba(18,128,97,0.2);
             font-size: 17px;
             line-height: 1.8;
@@ -1512,7 +1524,7 @@
     <div class="footer-col">
       <h4>Stay in touch</h4>
       <form class="subscribe-form" onsubmit="return false;">
-        <input type="email" placeholder="info@boxfordpartners.com" required>
+        <input type="email" placeholder="Your email" required>
         <button type="submit">Subscribe</button>
       </form>
     </div>
